@@ -43,7 +43,7 @@
     .plan {
       background-color: #111;
       border-radius: 16px;
-      box-shadow: 0 0 15px rgba(255, 126, 95, 0.6);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
       padding: 30px 25px;
       width: 320px;
       display: flex;
@@ -54,13 +54,13 @@
     }
     .plan:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 126, 95, 0.9);
+      box-shadow: 0 0 25px rgba(255, 254, 254, 0.9);
     }
     .plan h2 {
       margin: 0 0 20px;
       font-size: 2rem;
       font-weight: 700;
-      color: #ff7e5f;
+      color: #ffffff;
     }
     .payment-methods {
       width: 100%;
@@ -72,7 +72,7 @@
       background-color: #222;
       padding: 15px 20px;
       border-radius: 12px;
-      box-shadow: 0 0 8px rgba(255, 126, 95, 0.3);
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -83,9 +83,9 @@
       transition: background-color 0.25s ease;
     }
     .payment-option:hover {
-      background-color: #ff7e5f;
+      background-color: #ffffff;
       color: #000;
-      box-shadow: 0 0 15px rgba(255, 126, 95, 0.9);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
     }
     .payment-option span {
       user-select: none;
@@ -98,31 +98,7 @@
       text-align: center;
       width: 100%;
     }
-    #history {
-      margin-top: 40px;
-      width: 90%;
-      max-width: 600px;
-      background: #111;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(255, 126, 95, 0.6);
-    }
-    #history h3 {
-      margin-top: 0;
-      margin-bottom: 15px;
-      color: #ff7e5f;
-    }
-    #history ul {
-      list-style: none;
-      padding-left: 0;
-      max-height: 200px;
-      overflow-y: auto;
-      color: #ddd;
-    }
-    #history ul li {
-      margin-bottom: 8px;
-      font-size: 1rem;
-    }
+   
     #modal {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -139,13 +115,13 @@
       max-width: 400px;
       color: #fff;
       text-align: center;
-      box-shadow: 0 0 20px #ff7e5f;
+      box-shadow: 0 0 20px #ffffff;
       font-size: 1.2rem;
       user-select: none;
     }
     #modalContent button {
       margin-top: 20px;
-      background: #ff7e5f;
+      background: #ffffff;
       border: none;
       padding: 12px 24px;
       border-radius: 10px;
@@ -156,7 +132,7 @@
       transition: background-color 0.3s ease;
     }
     #modalContent button:hover {
-      background: #e76a48;
+      background: #ffffff;
     }
     /* Hamburger & menu */
     .hamburger {
@@ -173,7 +149,7 @@
     }
     .hamburger div {
       height: 4px;
-      background: #ff7e5f;
+      background: #f7f5f5;
       border-radius: 2px;
       transition: all 0.3s ease;
     }
@@ -192,7 +168,7 @@
       right: 20px;
       background: #111;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 126, 95, 0.6);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
       display: none;
       flex-direction: column;
       min-width: 180px;
@@ -262,10 +238,7 @@
 
   </div>
 
-  <div id="history">
-    <h3>Purchase History</h3>
-    <ul id="purchase-list"></ul>
-  </div>
+ 
 
   <footer>
     &copy; 2025 Xecret Hub.
@@ -291,91 +264,70 @@
     <a href="executors.html">Supported Executors</a>
   </nav>
 
-  <script>
-    function addToHistory(plan, price, method) {
-      const purchaseList = document.getElementById('purchase-list');
-      const now = new Date();
-      const timeString = now.toLocaleString();
-      const record = `${timeString} - ${plan} - ${price} via ${method}`;
-      let history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
-      history.unshift(record);
-      if (history.length > 10) history.pop();
-      localStorage.setItem('purchaseHistory', JSON.stringify(history));
-      renderHistory();
-    }
+<script>
+  // ฟังก์ชันเช็คว่าล็อกอินหรือยัง
+  function isLoggedIn() {
+    return !!localStorage.getItem('loggedInUser');
+  }
 
-    function renderHistory() {
-      const purchaseList = document.getElementById('purchase-list');
-      let history = JSON.parse(localStorage.getItem('purchaseHistory')) || [];
-      purchaseList.innerHTML = '';
-      history.forEach(record => {
-        const li = document.createElement('li');
-        li.textContent = record;
-        purchaseList.appendChild(li);
+  function showModal(message) {
+    const modal = document.getElementById('modal');
+    const modalMessage = document.getElementById('modalMessage');
+    modalMessage.textContent = message;
+    modal.style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+
+  function buyRobux(plan, price, url) {
+    if (!isLoggedIn()) {
+      showModal('You are not logged in yet.');
+      return;
+    }
+    if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to go to Roblox Store.`)) {
+      window.open(url, '_blank');
+      showModal('Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.');
+    }
+  }
+
+  function buyPaypal(plan, price, url) {
+    if (!isLoggedIn()) {
+      showModal('You are not logged in yet.');
+      return;
+    }
+    if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to go to Paypal.`)) {
+      window.open(url, '_blank');
+      showModal('Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.');
+    }
+  }
+
+  function buyTrueMoney(plan, price, phone) {
+    if (!isLoggedIn()) {
+      showModal('You are not logged in yet.');
+      return;
+    }
+    if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to copy phone number.`)) {
+      navigator.clipboard.writeText(phone).then(() => {
+        showModal(`Phone number ${phone} copied to clipboard! Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.`);
       });
     }
-function buyRobux(plan, price, url) {
-  if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to go to Roblox Store.`)) {
-    addToHistory(plan, price, 'Robux');
-    window.open(url, '_blank');
-    showModal('Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.');
   }
-}
 
-function buyPaypal(plan, price, url) {
-  if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to go to Paypal.`)) {
-    addToHistory(plan, price, 'Paypal');
-    window.open(url, '_blank');
-    showModal('Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.');
-  }
-}
+  // ปุ่มปิด modal
+  document.querySelector('#modalContent button').addEventListener('click', closeModal);
 
-function buyTrueMoney(plan, price, phone) {
-  if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to copy phone number.`)) {
-    addToHistory(plan, price, 'TrueMoney');
-    navigator.clipboard.writeText(phone).then(() => {
-      showModal(`Phone number ${phone} copied to clipboard!`, 'Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.');
-    });
-  }
-}
+  // hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const menuDropdown = document.getElementById('menuDropdown');
 
- let nextModalMessage = null;
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    menuDropdown.classList.toggle('show');
+  });
 
-function showModal(message, nextMessage = null) {
-  const modal = document.getElementById('modal');
-  const modalMessage = document.getElementById('modalMessage');
-  modalMessage.textContent = message;
-  nextModalMessage = nextMessage;
-  modal.style.display = 'flex';
-}
-
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-  if (nextModalMessage) {
-    const msg = nextModalMessage;
-    nextModalMessage = null;
-    showModal(msg);
-  }
-}
-
-
-    const hamburger = document.getElementById('hamburger');
-    const menuDropdown = document.getElementById('menuDropdown');
-
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      menuDropdown.classList.toggle('show');
-    });
-
-    window.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !menuDropdown.contains(e.target)) {
-        hamburger.classList.remove('active');
-        menuDropdown.classList.remove('show');
-      }
-    });
-
-    renderHistory();
-  </script>
+</script>
 
 </body>
 </html>
