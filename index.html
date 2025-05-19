@@ -158,17 +158,7 @@ main {
 #profile-menu button:hover {
   background: #666;
 }
-#history-list {
-  max-height: 120px;
-  overflow-y: auto;
-  background: #111;
-  border-radius: 4px;
-  padding: 0.5rem;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  color: #ccc;
-  text-align: left;
-}
+
 #logout-btn {
   margin-top: 1rem;
   background: #a00;
@@ -224,13 +214,9 @@ main {
 <div id="profile-menu">
   <h3>Profile</h3>
   <div>
-    <strong>History</strong>
-    <div id="history-list">No purchase history.</div>
   </div>
   <form id="account-form">
     <strong>Account Settings</strong>
-    <label for="profile-name">Name</label>
-    <input type="text" id="profile-name" />
     <label for="profile-email">Email</label>
     <input type="email" id="profile-email" />
     <label for="profile-password">Password</label>
@@ -277,8 +263,6 @@ const profileBtn = document.getElementById('profile-btn');
 const profileMenu = document.getElementById('profile-menu');
 const accountForm = document.getElementById('account-form');
 const logoutBtn = document.getElementById('logout-btn');
-const historyList = document.getElementById('history-list');
-const profileName = document.getElementById('profile-name');
 const profileEmail = document.getElementById('profile-email');
 const profilePassword = document.getElementById('profile-password');
 
@@ -312,20 +296,7 @@ function loadUser() {
   if (user) {
     loginLink.style.display = 'none';
     profileBtn.style.display = 'inline-block';
-    profileBtn.textContent = user.username || 'Profile';
-    profileName.value = user.name || '';
     profileEmail.value = user.email || '';
-    let history = user.history || [];
-    if (history.length === 0) {
-      historyList.textContent = 'No purchase history.';
-    } else {
-      historyList.innerHTML = '';
-      history.forEach(item => {
-        const p = document.createElement('p');
-        p.textContent = item;
-        historyList.appendChild(p);
-      });
-    }
   } else {
     loginLink.style.display = 'inline-block';
     profileBtn.style.display = 'none';
@@ -335,7 +306,6 @@ function loadUser() {
 accountForm.addEventListener('submit', (e) => {
   e.preventDefault();
   let user = JSON.parse(localStorage.getItem('loggedInUser')) || {};
-  user.name = profileName.value.trim();
   user.email = profileEmail.value.trim();
   if(profilePassword.value.trim()) {
     user.password = profilePassword.value.trim();
