@@ -66,9 +66,11 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
+      margin-bottom: 15px;
+      user-select: none;
     }
-    .payment-option {
+    label.payment-option {
       background-color: #222;
       padding: 15px 20px;
       border-radius: 12px;
@@ -80,15 +82,48 @@
       font-weight: 600;
       color: #eee;
       cursor: pointer;
-      transition: background-color 0.25s ease;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      user-select: none;
     }
-    .payment-option:hover {
+    label.payment-option:hover {
       background-color: #ffffff;
       color: #000;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
     }
-    .payment-option span {
+    label.payment-option input[type="radio"] {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .purchase-btn, .purchase-now-btn {
+      background: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #000;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      align-self: center;
       user-select: none;
+    }
+    .purchase-btn:hover, .purchase-now-btn:hover {
+      background-color: #ddd;
+    }
+    .purchase-now-btn {
+      display: none;
+      margin-top: 10px;
+    }
+    .how-to {
+      margin-top: 80px;
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      background-color: #111;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
     }
     footer {
       margin-top: 60px;
@@ -98,7 +133,6 @@
       text-align: center;
       width: 100%;
     }
-   
     #modal {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -134,7 +168,6 @@
     #modalContent button:hover {
       background: #ffffff;
     }
-    /* Hamburger & menu */
     .hamburger {
       position: fixed;
       top: 20px;
@@ -195,50 +228,57 @@
 </head>
 <body>
 
-  <h1>Purchase Xecret Hub</h1>
-  <p class="subtitle">Choose Your Plan</p>
+  <h1>Choose Your Plan</h1>
 
   <div class="plans">
-
-    <div class="plan">
-      <h2>Monthly</h2>
-      <div class="payment-methods">
-        <div class="payment-option" onclick="buyRobux('Monthly', '1,000 Robux', 'https://www.roblox.com/catalog/93578935960753')">
-          <span>1,000 Robux</span>
-          <span>Monthly</span>
-        </div>
-        <div class="payment-option" onclick="buyPaypal('Monthly', '$6', 'https://www.paypal.me/SophaLanet/6')">
-          <span>$6</span>
-          <span>Paypal</span>
-        </div>
-        <div class="payment-option" onclick="buyTrueMoney('Monthly', '$6', '0967861310')">
-          <span>$6</span>
-          <span>TrueMoney</span>
-        </div>
+    <div class="plan" id="monthlyPlan">
+      <h2>Monthly Access</h2>
+      <button class="purchase-btn" id="monthlyPurchaseBtn">Purchase</button>
+      <div class="payment-methods" id="monthlyMethods" style="display:none;">
+        <label class="payment-option" data-url="https://www.roblox.com/catalog/93578935960753">
+          <input type="radio" name="monthly" value="1,000 Robux" />
+          <span>1,000 Robux</span><span>Monthly</span>
+        </label>
+        <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/6">
+          <input type="radio" name="monthly" value="$6 Paypal" />
+          <span>$6</span><span>Paypal</span>
+        </label>
+        <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
+          <input type="radio" name="monthly" value="$6 TrueMoney" />
+          <span>$6</span><span>TrueMoney</span>
+        </label>
       </div>
+      <button class="purchase-now-btn" id="monthlyPurchaseNowBtn">Purchase Now</button>
     </div>
 
-    <div class="plan">
-      <h2>Lifetime</h2>
-      <div class="payment-methods">
-        <div class="payment-option" onclick="buyRobux('Lifetime', '2,000 Robux', 'https://www.roblox.com/catalog/77370347806343')">
-          <span>2,000 Robux</span>
-          <span>Lifetime</span>
-        </div>
-        <div class="payment-option" onclick="buyPaypal('Lifetime', '$11', 'https://www.paypal.me/SophaLanet/11')">
-          <span>$11</span>
-          <span>Paypal</span>
-        </div>
-        <div class="payment-option" onclick="buyTrueMoney('Lifetime', '$11', '0967861310')">
-          <span>$11</span>
-          <span>TrueMoney</span>
-        </div>
+    <div class="plan" id="lifetimePlan">
+      <h2>Lifetime Access</h2>
+      <button class="purchase-btn" id="lifetimePurchaseBtn">Purchase</button>
+      <div class="payment-methods" id="lifetimeMethods" style="display:none;">
+        <label class="payment-option" data-url="https://www.roblox.com/catalog/77370347806343">
+          <input type="radio" name="lifetime" value="2,000 Robux" />
+          <span>2,000 Robux</span><span>Lifetime</span>
+        </label>
+        <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/11">
+          <input type="radio" name="lifetime" value="$11 Paypal" />
+          <span>$11</span><span>Paypal</span>
+        </label>
+        <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
+          <input type="radio" name="lifetime" value="$11 TrueMoney" />
+          <span>$11</span><span>TrueMoney</span>
+        </label>
       </div>
+      <button class="purchase-now-btn" id="lifetimePurchaseNowBtn">Purchase Now</button>
     </div>
-
   </div>
 
- 
+  <div class="how-to">
+    <h2>How to Purchase</h2>
+    <p>1. Click <strong>Purchase</strong> on your desired plan.</p>
+    <p>2. Select a payment method. (Monthly or Lifetime)</p>
+    <p>3. Click <strong>Purchase Now</strong> to go directly to the payment page.</p>
+   <p>4. After payment, open a ticket in the <strong>🎫〢<a href="https://discord.gg/xecrethub" target="_blank" rel="noopener noreferrer">support</a></strong> Discord channel with your proof.</p>
+  </div>
 
   <footer>
     &copy; 2025 Xecret Hub.
@@ -264,70 +304,63 @@
     <a href="executors.html">Supported Executors</a>
   </nav>
 
-<script>
-  // ฟังก์ชันเช็คว่าล็อกอินหรือยัง
-  function isLoggedIn() {
-    return !!localStorage.getItem('loggedInUser');
-  }
-
-  function showModal(message) {
-    const modal = document.getElementById('modal');
-    const modalMessage = document.getElementById('modalMessage');
-    modalMessage.textContent = message;
-    modal.style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-  }
-
-  function buyRobux(plan, price, url) {
-    if (!isLoggedIn()) {
-      showModal('You are not logged in yet.');
-      return;
+  <script>
+    function isLoggedIn() {
+      return !!localStorage.getItem('loggedInUser');
     }
-    if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to go to Roblox Store.`)) {
-      window.open(url, '_blank');
-      showModal('Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.');
-    }
-  }
 
-  function buyPaypal(plan, price, url) {
-    if (!isLoggedIn()) {
-      showModal('You are not logged in yet.');
-      return;
+    function showModal(message) {
+      document.getElementById('modalMessage').textContent = message;
+      document.getElementById('modal').style.display = 'flex';
     }
-    if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to go to Paypal.`)) {
-      window.open(url, '_blank');
-      showModal('Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.');
-    }
-  }
 
-  function buyTrueMoney(plan, price, phone) {
-    if (!isLoggedIn()) {
-      showModal('You are not logged in yet.');
-      return;
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
     }
-    if (confirm(`You will be redirected to purchase ${price} for the ${plan} plan.\nPress OK to copy phone number.`)) {
-      navigator.clipboard.writeText(phone).then(() => {
-        showModal(`Phone number ${phone} copied to clipboard! Please go to Xecret Hub Discord Server in the 🎫〢support channel, send your purchase proof, and wait for us.`);
+
+    function setupPlan(planId, purchaseBtnId, methodsId, purchaseNowBtnId, radioName) {
+      const purchaseBtn = document.getElementById(purchaseBtnId);
+      const methodsDiv = document.getElementById(methodsId);
+      const purchaseNowBtn = document.getElementById(purchaseNowBtnId);
+
+      let selectedUrl = null;
+
+      purchaseBtn.addEventListener('click', () => {
+        methodsDiv.style.display = 'flex';
+        purchaseBtn.style.display = 'none';
+      });
+
+      const radios = methodsDiv.querySelectorAll(`input[name="${radioName}"]`);
+      radios.forEach(radio => {
+        radio.addEventListener('change', () => {
+          const label = radio.closest('label');
+          selectedUrl = label.getAttribute('data-url');
+          purchaseNowBtn.style.display = 'inline-block';
+        });
+      });
+
+      purchaseNowBtn.addEventListener('click', () => {
+        if (!isLoggedIn()) {
+          showModal('You are not logged in yet.');
+          return;
+        }
+        if (!selectedUrl) {
+          showModal('Please select a payment method before proceeding.');
+          return;
+        }
+        window.open(selectedUrl, '_blank');
       });
     }
-  }
 
-  // ปุ่มปิด modal
-  document.querySelector('#modalContent button').addEventListener('click', closeModal);
+    setupPlan('monthlyPlan', 'monthlyPurchaseBtn', 'monthlyMethods', 'monthlyPurchaseNowBtn', 'monthly');
+    setupPlan('lifetimePlan', 'lifetimePurchaseBtn', 'lifetimeMethods', 'lifetimePurchaseNowBtn', 'lifetime');
 
-  // hamburger menu
-  const hamburger = document.getElementById('hamburger');
-  const menuDropdown = document.getElementById('menuDropdown');
-
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    menuDropdown.classList.toggle('show');
-  });
-
-</script>
-
+    const hamburger = document.getElementById('hamburger');
+    const menuDropdown = document.getElementById('menuDropdown');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      menuDropdown.classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
