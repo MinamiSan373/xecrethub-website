@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login / Sign Up - Xecret Hub</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/VYNV7tYV/Xecret-removebg-preview.png" />
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      margin: 0; padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.6rem 0;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.7rem;
+      background: #444;
+      border: none;
+      color: #fff;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 0.5rem;
+    }
+    button:hover {
+      background: #666;
+    }
+    .switch {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .switch a {
+      color: #44aaff;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    /* Modal styles */
+    #modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    #modalContent {
+      background: #222;
+      padding: 1.5rem 2rem;
+      border-radius: 8px;
+      color: #fff;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px #44aaff;
+    }
+    #modalClose {
+      margin-top: 1rem;
+      background: #44aaff;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: #000;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="form-title">Login</h2>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <input type="text" id="name" placeholder="Name (Sign Up only)" style="display:none;" />
+    <button id="submit-btn">Login</button>
+    <div class="switch">
+      <span id="toggle-form">Don't have an account? <a>Sign up here</a></span>
+    </div>
+  </div>
+
+  <div id="modal">
+    <div id="modalContent">
+      <div id="modalMessage"></div>
+      <button id="modalClose">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const formTitle = document.getElementById('form-title');
+    const submitBtn = document.getElementById('submit-btn');
+    const toggleForm = document.getElementById('toggle-form');
+    const nameInput = document.getElementById('name');
+    const modal = document.getElementById('modal');
+    const modalMessage = document.getElementById('modalMessage');
+    const modalClose = document.getElementById('modalClose');
+    let isLogin = true;
+
+    toggleForm.addEventListener('click', () => {
+      isLogin = !isLogin;
+      formTitle.textContent = isLogin ? 'Login' : 'Sign Up';
+      submitBtn.textContent = isLogin ? 'Login' : 'Sign Up';
+      toggleForm.innerHTML = isLogin 
+        ? "Don't have an account? <a>Sign up here</a>" 
+        : "Already have an account? <a>Login here</a>";
+      nameInput.style.display = isLogin ? 'none' : 'block';
+    });
+
+    submitBtn.addEventListener('click', () => {
+      const email = document.getElementById('email').value.trim().toLowerCase();
+      const password = document.getElementById('password').value.trim();
+      const name = nameInput.value.trim();
+      let users = JSON.parse(localStorage.getItem('xecretHubUsers') || '[]');
+      if (isLogin) {
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+          localStorage.setItem('loggedInUser', JSON.stringify(user));
+          window.location.href = 'index.html';
+        } else {
+          showModal('Email or password is incorrect.');
+        }
+      } else {
+        if (users.some(u => u.email === email)) {
+          showModal('Email already exists.');
+          return;
+        }
+        if (!email || !password || !name) {
+          showModal('Please fill out all fields.');
+          return;
+        }
+        const newUser = {
+          email,
+          password,
+          name,
+          profilePic: 'https://i.pravatar.cc/100?u=' + encodeURIComponent(email)
+        };
+        users.push(newUser);
+        localStorage.setItem('xecretHubUsers', JSON.stringify(users));
+        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+        window.location.href = 'index.html';
+      }
+    });
+
+    function showModal(message) {
+      modalMessage.textContent = message;
+      modal.style.display = 'flex';
+    }
+
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
