@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Games - Xecret Hub</title>
+  <link rel="icon" type="image/png" href="https://i.ibb.co/VYNV7tYV/Xecret-removebg-preview.png" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      position: relative;
+      cursor: auto;
+    }
+    
+    h1 {
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+      letter-spacing: 1.5px;
+      font-size: 48px;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+      color: #aaa;
+    }
+
+    .game-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      justify-content: center;
+      padding: 0;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .game-item {
+      background-color: #111;
+      border-radius: 16px;
+      overflow: hidden;
+      width: 220px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .game-item:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .game-item a {
+      color: white;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+
+    .game-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .game-item span {
+      display: block;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: 600;
+      background: #111;
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+      z-index: 10001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger div {
+      background-color: white;
+      height: 4px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .menu-dropdown {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      background-color: #111;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      display: none;
+      flex-direction: column;
+      min-width: 160px;
+      z-index: 10000;
+      user-select: none;
+    }
+
+    .menu-dropdown a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .menu-dropdown a:hover {
+      background-color: #fff;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .menu-dropdown.show {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+<nav class="menu-dropdown" id="menuDropdown">
+  <a href="home.html">Home</a>
+  <a href="purchase.html">Purchase</a>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="executors.html">Supported Executors</a>
+</nav>
+
+
+  <h1>Supported Games</h1>
+  <div class="subtitle" id="gameCountText">Loading...</div>
+
+  <ul class="game-list" id="gameList">
+      <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/6336491204/Karate" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-579f90a6ae29a5fee022fcca690c3a4e/768/432/Image/Webp/noFilter" alt="Karate">
+        <span>Karate</span>
+      </a>
+    </li>
+
+    <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/107040934010858/The-Destroyer-Project-Egoist" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-e80a41614a2672abe99ea0ef91cc337b/768/432/Image/Webp/noFilter" alt="Project Egoist">
+        <span>Project Egoist</span>
+      </a>
+    </li>
+
+    <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/13379208636/Attack-on-Titan-Revolution" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-6068127449fac72cf6f7e4dd85514826/768/432/Image/Webp/noFilter" alt="Attack on Titan Revolution">
+        <span>Attack on Titan Revolution</span>
+      </a>
+    </li>
+
+    <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/6549794549/RH2-The-Journey-BETA" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-e3c534ed52b2ba5df3facc4154c6054b/768/432/Image/Webp/noFilter" alt="RH2 The Journey">
+        <span>RH2 The Journey</span>
+      </a>
+    </li>
+
+     <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/3840352284/Volleyball-4-2" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-7fb1facd309d28e5fcf3ba19d1e72584/768/432/Image/Webp/noFilter" alt="Volleyball 4.2">
+        <span>Volleyball 4.2</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/17435076424/UPDATE-4-PART-1-SPIKED" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-e203b323f5789182035e88bad681d472/768/432/Image/Webp/noFilter" alt="Spiked">
+        <span>Spiked</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/12276235857/DRAGON-LOCKED" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-5655ec2cf73114b47a41c0bbf87b8fa3/768/432/Image/Webp/noFilter" alt="Locked">
+        <span>Locked</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/13876564679/Season-3-Highschool-Hoops" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-3907551636fdfb6c2435be882c54416d/768/432/Image/Webp/noFilter" alt="Highschool Hoops">
+        <span>Highschool Hoops</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/15133985014/BLUE-LOCK-STADIUM-Freestyle-Football" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-80fbea277bc6ebf43614350fe848dbe5/768/432/Image/Webp/noFilter" alt="Freestyle Football">
+        <span>Freestyle Football</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/18668065416/SUMMER-Blue-Lock-Rivals" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-17c60fb0d0d852374ce7950f109739fa/768/432/Image/Webp/noFilter" alt="Blue Lock Rivals">
+        <span>Blue Lock Rivals</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/games/6734275465/Beyond-Volleyball-League" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-507744162cd7db19f7bcb68e2cc5c670/768/432/Image/Webp/noFilter" alt="Beyond Volleyball League">
+        <span>Beyond Volleyball League</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/94647229517154/BEASTS-UPDATE-Azure-Latch" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-b857de1c4c3e7c3f7466e68a949f3542/768/432/Image/Webp/noFilter" alt="Azure Latch">
+        <span>Azure Latch</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/5956785391/Update-1-5-Project-Slayers" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-5a22ae7f4968709fc36e508fe4ad6e0f/768/432/Image/Webp/noFilter" alt="Project Slayers">
+        <span>Project Slayers</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/ja/games/13641922937/HUGE-UPDATE-META-LOCK" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-8fd7d40c44ba4f91a4684812e3a20e1c/768/432/Image/Webp/noFilter" alt="Meta Lock">
+        <span>Meta Lock</span>
+      </a>
+    </li>
+
+ <li class="game-item">
+      <a href="https://www.roblox.com/games/4282985734/Combat-Warriors" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-3e930b16aa240db7470e6416718fb4dc/768/432/Image/Webp/noFilter" alt="Combat Warrior">
+        <span>Combat Warrior</span>
+      </a>
+    </li>
+
+     <li class="game-item">
+      <a href="https://www.roblox.com/games/130739873848552/UPD-Basketball-Zero" target="_blank">
+        <img src="https://tr.rbxcdn.com/180DAY-766993e246118efb73f504250640bf78/768/432/Image/Webp/noFilter" alt="Basketball Zero">
+        <span>Basketball Zero</span>
+      </a>
+    </li>
+  </ul>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const menuDropdown = document.getElementById('menuDropdown');
+    const gameList = document.getElementById('gameList');
+    const gameCountText = document.getElementById('gameCountText');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      menuDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !menuDropdown.contains(e.target)) {
+        hamburger.classList.remove('active');
+        menuDropdown.classList.remove('show');
+      }
+    });
+
+    function updateGameCount() {
+      const count = gameList.children.length;
+      gameCountText.textContent = `Currently supporting ${count} games`;
+    }
+
+    updateGameCount();
+  </script>
+  <footer>
+    &copy; 2025 Xecret Hub.
+  </footer>
+
+</body>
+</html>
