@@ -99,7 +99,6 @@
     <h2 id="form-title">Login</h2>
     <input type="email" id="email" placeholder="Email" />
     <input type="password" id="password" placeholder="Password" />
-    <input type="text" id="name" placeholder="Name (Sign Up only)" style="display:none;" />
     <button id="submit-btn">Login</button>
     <div class="switch">
       <span id="toggle-form">Don't have an account? <a>Sign up here</a></span>
@@ -117,7 +116,6 @@
     const formTitle = document.getElementById('form-title');
     const submitBtn = document.getElementById('submit-btn');
     const toggleForm = document.getElementById('toggle-form');
-    const nameInput = document.getElementById('name');
     const modal = document.getElementById('modal');
     const modalMessage = document.getElementById('modalMessage');
     const modalClose = document.getElementById('modalClose');
@@ -130,13 +128,11 @@
       toggleForm.innerHTML = isLogin 
         ? "Don't have an account? <a>Sign up here</a>" 
         : "Already have an account? <a>Login here</a>";
-      nameInput.style.display = isLogin ? 'none' : 'block';
     });
 
     submitBtn.addEventListener('click', () => {
       const email = document.getElementById('email').value.trim().toLowerCase();
       const password = document.getElementById('password').value.trim();
-      const name = nameInput.value.trim();
       let users = JSON.parse(localStorage.getItem('xecretHubUsers') || '[]');
       if (isLogin) {
         const user = users.find(u => u.email === email && u.password === password);
@@ -151,14 +147,13 @@
           showModal('Email already exists.');
           return;
         }
-        if (!email || !password || !name) {
+        if (!email || !password) {
           showModal('Please fill out all fields.');
           return;
         }
         const newUser = {
           email,
           password,
-          name,
           profilePic: 'https://i.pravatar.cc/100?u=' + encodeURIComponent(email)
         };
         users.push(newUser);
