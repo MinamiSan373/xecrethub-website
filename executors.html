@@ -170,7 +170,6 @@
   <h1>Supported Executors</h1>
   <div class="subtitle" id="executrCountText">Loading...</div>
   
-  <h2>PC</h2>
   <ul class="executor-list" id="executorListPC">
     <li class="executor-item"><span>Ronix</span></li>
     <li class="executor-item"><span>Wave</span></li>
@@ -181,16 +180,8 @@
     <li class="executor-item"><span>Seliware</span></li>
     <li class="executor-item"><span>Atlantis</span></li>
     <li class="executor-item"><span>Cryptic</span></li>
-  </ul>
-
-  <h2>Mac</h2>
-  <ul class="executor-list" id="executorListMac">
     <li class="executor-item"><span>MacSploit</span></li>
-  </ul>
-
-  <h2>Mobile</h2>
-  <ul class="executor-list" id="executorListMobile">
-    <li class="executor-item"><span>Delta</span></li>
+     <li class="executor-item"><span>Delta</span></li>
     <li class="executor-item"><span>Codex</span></li>
     <li class="executor-item"><span>Arecus X</span></li>
     <li class="executor-item"><span>AppleWare</span></li>
@@ -198,6 +189,8 @@
     <li class="executor-item"><span>Fluxus</span></li>
     <li class="executor-item"><span>Nebula</span></li>
   </ul>
+
+
 
   <script>
     const hamburger = document.getElementById('hamburger');
@@ -219,9 +212,7 @@
 
    function updateGameCount() {
   const pcCount = document.getElementById('executorListPC').children.length;
-  const macCount = document.getElementById('executorListMac').children.length;
-  const mobileCount = document.getElementById('executorListMobile').children.length;
-  const totalCount = pcCount + macCount + mobileCount;
+  const totalCount = pcCount;
   executrCountText.textContent = `Currently supporting ${totalCount} executors`;
 }
 
