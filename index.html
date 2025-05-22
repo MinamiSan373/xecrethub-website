@@ -317,13 +317,13 @@ accountForm.addEventListener('submit', (e) => {
   showModal('Account information updated successfully.');
   profilePassword.value = '';
 });
-
 logoutBtn.addEventListener('click', () => {
   localStorage.removeItem('loggedInUser');
-  showModal('Logged out successfully.');
   loadUser();
   profileMenu.classList.remove('show');
+  location.reload();
 });
+
 
 window.onload = loadUser;
 </script>
