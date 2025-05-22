@@ -91,6 +91,16 @@ main {
   border-radius: 2px;
   transition: all 0.3s ease;
 }
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: transparent;
+  font-size: 0.9rem;
+  user-select: none;
+}
 .hamburger.active div:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -226,8 +236,7 @@ main {
     <button type="button" id="logout-btn">Logout</button>
   </form>
 </div>
-
-<main>
+<main style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; max-width: 600px; padding: 0 1rem;">
   <h2 style="font-weight: 800; font-size: 2.5rem; margin-bottom: 0.5rem; letter-spacing: 1px;">Xecret Hub</h2>
   <p style="font-size: 1.3rem; color: #bbb; margin-bottom: 2rem; letter-spacing: 0.5px;">20+ Supported Games • Daily Updates</p>
   <div style="display: flex; justify-content: center; gap: 1.5rem; width: 100%;">
@@ -240,21 +249,14 @@ main {
       Join Discord
     </a>
   </div>
-</main>
-<div style="text-align: center; margin-top: -3rem;">
-  <h3 style="color: #fff; font-weight: 700; font-size: 2rem; margin-bottom: 2rem;">Preview</h3>
-  <iframe width="800" height="450" 
-      src="https://www.youtube.com/embed/Lh3UAA4qKzk" 
-      title="Xecret Hub Preview" frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen 
-      style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);">
-  </iframe>
-</div>
 
-<div id="modal" onclick="this.style.display='none'">
-  <div id="modalMessage"></div>
-</div>
+  <div style="margin-top: 3rem; text-align: center;">
+    <a href="https://www.youtube.com/@XecretHub" target="_blank" rel="noopener"
+       style="display: inline-block; margin-bottom: 1.5rem; padding: 0.75rem 2.5rem; background: linear-gradient(90deg, #1877f2, #3b5998); color: #fff; font-weight: 700; font-size: 1.1rem; border-radius: 30px; box-shadow: 0 4px 15px rgba(24, 119, 242, 0.6); text-decoration: none; transition: all 0.3s ease; letter-spacing: 0.8px; user-select: none;">
+      Showcase
+    </a>
+  </div>
+</main>
 
 <script>
 const hamburger = document.getElementById('hamburger');
@@ -325,5 +327,9 @@ logoutBtn.addEventListener('click', () => {
 
 window.onload = loadUser;
 </script>
+  <footer>
+    &copy; 2025 Xecret Hub - Home.
+  </footer>
+
 </body>
 </html>
