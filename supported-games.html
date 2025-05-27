@@ -332,19 +332,17 @@ footer {
     position: relative;
     cursor: pointer;
   }
+.locked::after {
+  content: "🔒";
+  position: absolute;
+  top: 2px;  
+  left: 2px;   
+  font-size: 32px;
+  pointer-events: none;
+  opacity: 0.8;
+  user-select: none;
+}
 
-  .locked::after {
-    content: "";
-    position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 40px;
-    height: 40px;
-    background: url('https://cdn-icons-png.flaticon.com/512/565/565547.png') no-repeat center center;
-    background-size: contain;
-    pointer-events: none;
-    opacity: 0.8;
-  }
 
   .locked img {
     filter: grayscale(100%) brightness(60%);
