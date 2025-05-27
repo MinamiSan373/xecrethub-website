@@ -324,6 +324,9 @@ footer {
         <span>Balthazar</span>
       </a>
     </li>
+
+
+<!----------------Lock---------------->
 <style>
   .locked {
     position: relative;
@@ -408,63 +411,70 @@ footer {
     }, 1000);
   }
 </script>
-
+<!----------------Lock---------------->
   </ul>
 
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const menuDropdown = document.getElementById('menuDropdown');
-    const gameList = document.getElementById('gameList');
-    const gameCountText = document.getElementById('gameCountText');
+<script>
+  const hamburger = document.getElementById('hamburger')
+  const menuDropdown = document.getElementById('menuDropdown')
+  const searchInput = document.getElementById('searchInput');
+  const clearSearch = document.getElementById('clearSearch');
+  const gameList = document.getElementById('gameList');
+  const gameCountText = document.getElementById('gameCountText');
+  const searchResultCount = document.getElementById('searchResultCount');
+  const allItems = Array.from(document.querySelectorAll('.game-item'));
+  const unlockedItems = allItems.filter(item => !item.classList.contains('locked'));
 
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      menuDropdown.classList.toggle('show');
-    });
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active')
+    menuDropdown.classList.toggle('show')
+  })
 
-    document.addEventListener('click', (e) => {
-      if (!hamburger.contains(e.target) && !menuDropdown.contains(e.target)) {
-        hamburger.classList.remove('active');
-        menuDropdown.classList.remove('show');
-      }
-    });
-
-    
-  const gameItems = document.querySelectorAll('.game-item');
-  const unlockedGames = Array.from(gameItems).filter(item => !item.classList.contains('locked'));
-  const totalText = document.getElementById('gameCountText');
-    function updateGameCount() {
-      const count = gameList.children.length;
-      totalText.textContent = `Currently supporting ${unlockedGames.length} games`;
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !menuDropdown.contains(e.target)) {
+      hamburger.classList.remove('active')
+      menuDropdown.classList.remove('show')
     }
+  })
 
-    updateGameCount();
-   
+  function updateGameCount(count) {
+    gameCountText.textContent = `Currently supporting ${count} games`;
+  }
 
+  updateGameCount(unlockedItems.length);
 
-function performSearch() {
-  const terms = searchInput.value.toLowerCase().split(" ").filter(Boolean);
-  let visibleCount = 0;
+  function performSearch() {
+    const terms = searchInput.value.toLowerCase().split(' ').filter(Boolean);
+    if (terms.length === 0) {
+      allItems.forEach(item => item.style.display = 'block');
+      updateGameCount(unlockedItems.length);
+      searchResultCount.textContent = '';
+      return;
+    }
+    let visibleCount = 0;
+    allItems.forEach(item => {
+      if (item.classList.contains('locked')) {
+        item.style.display = 'none';
+        return;
+      }
+      const name = item.textContent.toLowerCase();
+      const match = terms.every(t => name.includes(t));
+      item.style.display = match ? 'block' : 'none';
+      if (match) visibleCount++;
+    });
+    updateGameCount(visibleCount);
+    searchResultCount.textContent = visibleCount
+      ? `Currently supporting ${visibleCount} games`
+      : 'No games found';
+  }
 
-  gameItems.forEach(item => {
-    const name = item.textContent.toLowerCase();
-    const matches = terms.every(term => name.includes(term));
-    item.style.display = matches ? 'block' : 'none';
-    if (matches) visibleCount++;
+  searchInput.addEventListener('input', performSearch);
+  clearSearch.addEventListener('click', () => {
+    searchInput.value = '';
+    performSearch();
   });
+</script>
 
-  searchResultCount.textContent = visibleCount > 0
-    ? `Showing ${visibleCount} games`
-    : `No games found`;
-}
-
-searchInput.addEventListener('input', performSearch);
-clearSearch.addEventListener('click', () => {
-  searchInput.value = '';
-  performSearch();
-});
-
-  </script>
   <footer>
     &copy; 2025 Xecret Hub - Supported Games.
   </footer>
