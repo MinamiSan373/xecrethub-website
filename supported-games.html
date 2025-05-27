@@ -49,6 +49,7 @@
       margin: auto;
     }
 footer {
+   width: 100%;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -323,6 +324,90 @@ footer {
         <span>Balthazar</span>
       </a>
     </li>
+<style>
+  .locked {
+    position: relative;
+    cursor: pointer;
+  }
+
+  .locked::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+    background: url('https://cdn-icons-png.flaticon.com/512/565/565547.png') no-repeat center center;
+    background-size: contain;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  .locked img {
+    filter: grayscale(100%) brightness(60%);
+  }
+
+  #notifyPopup {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #222;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+    font-weight: 600;
+    font-size: 16px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 9999;
+  }
+
+  #notifyPopup.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<li class="game-item locked" data-locked="true" data-game-name="Volleyball Zero">
+  <a href="javascript:void(0);">
+    <img src="https://tr.rbxcdn.com/180DAY-078f9614afe0f6f40f74860c1495b4d5/768/432/Image/Webp/noFilter" alt="Volleyball Zero" />
+    <span>Volleyball Zero</span>
+  </a>
+</li>
+
+<li class="game-item locked" data-locked="true" data-game-name="Goalbound">
+  <a href="javascript:void(0);">
+    <img src="https://tr.rbxcdn.com/180DAY-d6712baceff68618165d71f0f6795208/500/280/Image/Jpeg/noFilter" alt="Goalbound" />
+    <span>Goalbound</span>
+  </a>
+</li>
+
+<div id="notifyPopup"></div>
+
+<script>
+  const lockedGames = document.querySelectorAll('.game-item.locked');
+  const notifyPopup = document.getElementById('notifyPopup');
+
+  lockedGames.forEach(game => {
+    game.addEventListener('click', e => {
+      e.preventDefault();
+      const gameName = game.getAttribute('data-game-name') || "This game";
+      showNotification(`${gameName} is not released yet.`);
+    });
+  });
+
+  function showNotification(message) {
+    notifyPopup.textContent = message;
+    notifyPopup.classList.add('show');
+    clearTimeout(window._notifyTimeout);
+    window._notifyTimeout = setTimeout(() => {
+      notifyPopup.classList.remove('show');
+    }, 1000);
+  }
+</script>
 
   </ul>
 
@@ -344,14 +429,18 @@ footer {
       }
     });
 
+    
+  const gameItems = document.querySelectorAll('.game-item');
+  const unlockedGames = Array.from(gameItems).filter(item => !item.classList.contains('locked'));
+  const totalText = document.getElementById('gameCountText');
     function updateGameCount() {
       const count = gameList.children.length;
-      gameCountText.textContent = `Currently supporting ${count} games`;
+      totalText.textContent = `Currently supporting ${unlockedGames.length} games`;
     }
 
     updateGameCount();
-    const gameItems = document.querySelectorAll('.game-item');
-const searchResultCount = document.getElementById('searchResultCount');
+   
+
 
 function performSearch() {
   const terms = searchInput.value.toLowerCase().split(" ").filter(Boolean);
