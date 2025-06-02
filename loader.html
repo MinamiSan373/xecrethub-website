@@ -118,29 +118,33 @@ local status = api.check_key(script_key)
 local SettingsHandlers = {
     KEY_VALID = function()
         pcall(api.purge_cache)
-        ShowNotify("Welcome 🎉 "..player.DisplayName,
-            "Executions: "..status.data.total_executions.."\nExpires: "..(status.data.auth_expire > 0 and formatTime(status.data.auth_expire - os.time()) or "Lifetime"),
+        ShowNotify("🎉 Welcome, "..player.DisplayName,
+            "✅ Executions: "..status.data.total_executions.."\n⏳ Access: "..(status.data.auth_expire > 0 and formatTime(status.data.auth_expire - os.time()) or "Lifetime Access"),
             7)
         api.load_script()
     end,
+    
     KEY_HWID_LOCKED = function()
-        ShowNotify("HWID Locked 🔒",
-            "Your hardware ID is locked.\nReset it in Discord #get-script or use your dashboard.",
+        ShowNotify("🔐 HWID Locked",
+            "Your HWID is currently locked.\nReset via Discord #📜〢script or your dashboard.",
             10)
     end,
+    
     KEY_EXPIRED = function()
-        ShowNotify("Key Expired ⏰",
-            "Your subscription has ended.\nPlease renew to continue using Xecret Hub.",
+        ShowNotify("⏰ Subscription Expired",
+            "Your access has expired.\nPlease renew to continue enjoying Xecret Hub.",
             10)
     end,
+    
     KEY_BANNED = function()
-        ShowNotify("Key Blacklisted 🚫",
-            "Access revoked.\nContact support for assistance.",
+        ShowNotify("🚫 Blacklisted",
+            "This key has been blacklisted.\nIf you believe this is a mistake, contact support.",
             10)
     end,
+    
     KEY_INCORRECT = function()
-        ShowNotify("Invalid Key ❌",
-            "The key entered is not valid.\nCheck for typos or contact support.",
+        ShowNotify("❌ Invalid Key",
+            "The key you entered is incorrect or missing.\nDouble-check and try again.",
             10)
     end
 }
