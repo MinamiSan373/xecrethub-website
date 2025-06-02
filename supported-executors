@@ -156,6 +156,19 @@
       color: #000;
       cursor: pointer;
     }
+.progress-container {
+  width: 80%;
+  height: 10px;
+  background-color: #333;
+  border-radius: 5px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  transition: width 0.3s ease;
+}
 
     .menu-dropdown.show {
       display: flex;
@@ -191,33 +204,217 @@
 </div>
 
   <ul class="executor-list" id="executorListPC">
-    <li class="executor-item"><span>Ronix</span></li>
-    <li class="executor-item"><span>Wave</span></li>
-    <li class="executor-item"><span>Swift</span></li>
-    <li class="executor-item"><span>AWP</span></li>
-    <li class="executor-item"><span>Sirhurt</span></li>
-    <li class="executor-item"><span>Atlantis</span></li>
-    <li class="executor-item"><span>Seliware</span></li>
-    <li class="executor-item"><span>Atlantis</span></li>
-    <li class="executor-item"><span>Cryptic</span></li>
-    <li class="executor-item"><span>MacSploit</span></li>
-    <li class="executor-item"><span>Delta</span></li>
-    <li class="executor-item"><span>Codex</span></li>
-    <li class="executor-item"><span>Arecus X</span></li>
-    <li class="executor-item"><span>AppleWare</span></li>
-    <li class="executor-item"><span>Krnl</span></li>
-    <li class="executor-item"><span>Fluxus</span></li>
-    <li class="executor-item"><span>Nebula</span></li>
-    <li class="executor-item"><span>Visual</span></li>
-    <li class="executor-item"><span>Volcano</span></li>
-    <li class="executor-item"><span>Velocity</span></li>
-    <li class="executor-item"><span>Xeno</span></li>
-    <li class="executor-item"><span>Solara</span></li>
-    <li class="executor-item"><span>Zenith</span></li>
-    <li class="executor-item"><span>Potassium</span></li>
-    <li class="executor-item"><span>Hydrogen</span></li>
-    <li class="executor-item"><span>Synapse Mac</span></li>
+
+    <li class="executor-item">
+  <div style="text-align: center;">
+    <span>Ronix</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="60"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Wave</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="100"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Swift</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>AWP</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="100"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Sirhurt</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Atlantis</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Seliware</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Cryptic</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="70"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>MacSploit</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Delta</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Codex</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Arecus X</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="80"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>AppleWare</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="80"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Krnl</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Fluxus</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Nebula</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Zenith</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="100"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Potassium</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="100"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Xeno</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="30"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Solara</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="10"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Volcano</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Velocity</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
+<li class="executor-item">
+  <div style="text-align: center;">
+    <span>Visual</span>
+    <div class="progress-container">
+      <div class="progress-bar" data-percent="50"></div>
+    </div>
+  </div>
+</li>
+
   </ul>
+
+
 
   <script>
     const hamburger = document.getElementById('hamburger');
@@ -270,6 +467,36 @@
     searchInput.value = '';
     performSearch();
   });
+  const bars = document.querySelectorAll('.progress-bar');
+bars.forEach(bar => {
+  const percent = parseInt(bar.dataset.percent);
+  bar.style.width = percent + '%';
+
+  if (percent < 40) {
+    bar.style.backgroundColor = 'red';
+  } else if (percent < 80) {
+    bar.style.backgroundColor = 'yellow';
+  } else {
+    bar.style.backgroundColor = 'limegreen';
+  }
+});
+
+const container = document.getElementById('executorListPC');
+const itemsArray = Array.from(container.children);
+
+itemsArray.sort((a, b) => {
+  const aBar = a.querySelector('.progress-bar');
+  const bBar = b.querySelector('.progress-bar');
+
+  const aPercent = aBar ? parseInt(aBar.dataset.percent) || 0 : 0;
+  const bPercent = bBar ? parseInt(bBar.dataset.percent) || 0 : 0;
+
+  return bPercent - aPercent;
+});
+
+
+itemsArray.forEach(item => container.appendChild(item));
+
   </script>
   
   <footer>
