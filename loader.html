@@ -1,1 +1,141 @@
+--[[
 loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/9682f69c634232479b8cc052f3033afc.lua"))()
+]]
+local gui = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"))
+gui.Name = "XecretHubCustomNotifyGUI"
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+local notifyHolder = Instance.new("Frame", gui)
+notifyHolder.Name = "XecretHubNotifyHolder"
+notifyHolder.Size = UDim2.new(0, 400, 1, 0)
+notifyHolder.Position = UDim2.new(0, 20, 1, -20)
+notifyHolder.BackgroundTransparency = 1
+
+local ActiveNotifies = {}
+
+function ShowNotify(title, message, duration)
+	duration = duration or 5
+
+	local notifyFrame = Instance.new("Frame")
+	notifyFrame.Size = UDim2.new(0, 0, 0, 0)
+	notifyFrame.Position = UDim2.new(0, 0, 1, - (#ActiveNotifies * 110))
+	notifyFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+	notifyFrame.BorderSizePixel = 0
+	notifyFrame.BackgroundTransparency = 1
+	notifyFrame.AnchorPoint = Vector2.new(0, 1)
+	notifyFrame.ClipsDescendants = true
+	notifyFrame.Parent = notifyHolder
+
+	local UICorner = Instance.new("UICorner", notifyFrame)
+	UICorner.CornerRadius = UDim.new(0, 14)
+
+	local titleLabel = Instance.new("TextLabel")
+	titleLabel.Size = UDim2.new(1, -40, 0, 28)
+	titleLabel.Position = UDim2.new(0, 20, 0, 12)
+	titleLabel.Text = title
+	titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	titleLabel.TextSize = 21
+	titleLabel.Font = Enum.Font.GothamBold
+	titleLabel.BackgroundTransparency = 1
+	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+	titleLabel.Parent = notifyFrame
+
+	local messageLabel = Instance.new("TextLabel")
+	messageLabel.Size = UDim2.new(1, -40, 0, 60)
+	messageLabel.Position = UDim2.new(0, 20, 0, 44)
+	messageLabel.Text = message
+	messageLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+	messageLabel.TextSize = 16
+	messageLabel.Font = Enum.Font.Gotham
+	messageLabel.BackgroundTransparency = 1
+	messageLabel.TextWrapped = true
+	messageLabel.TextXAlignment = Enum.TextXAlignment.Left
+	messageLabel.TextYAlignment = Enum.TextYAlignment.Top
+	messageLabel.Parent = notifyFrame
+
+	table.insert(ActiveNotifies, notifyFrame)
+
+	for i, frame in ipairs(ActiveNotifies) do
+		game:GetService("TweenService"):Create(frame, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+			Position = UDim2.new(0, 0, 0, (i - 1) * 110)
+		}):Play()
+	end
+
+	game:GetService("TweenService"):Create(notifyFrame, TweenInfo.new(0.35, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+		Size = UDim2.new(0, 400, 0, 110),
+		BackgroundTransparency = 0
+	}):Play()
+
+	task.wait(duration)
+
+	game:GetService("TweenService"):Create(notifyFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
+		Size = UDim2.new(0, 0, 0, 0),
+		BackgroundTransparency = 1
+	}):Play()
+
+	task.delay(0.3, function()
+		notifyFrame:Destroy()
+		for i, frame in ipairs(ActiveNotifies) do
+			if frame == notifyFrame then
+				table.remove(ActiveNotifies, i)
+				break
+			end
+		end
+		for i, frame in ipairs(ActiveNotifies) do
+			game:GetService("TweenService"):Create(frame, TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+				Position = UDim2.new(0, 0, 0, (i - 1) * 110)
+			}):Play()
+		end
+	end)
+end
+
+local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
+api.script_id = "9682f69c634232479b8cc052f3033afc"
+
+local MarketplaceService, Players = game:GetService("MarketplaceService"), game:GetService("Players")
+
+local function FormatTime(s)
+    local d, h, m = math.floor(s/86400), math.floor((s%86400)/3600), math.floor((s%3600)/60)
+    return d > 0 and d.."d "..h.."h" or h > 0 and h.."h "..m.."m" or m.."m "..math.floor(s%60).."s"
+end
+
+local success, gameInfo = pcall(function() return MarketplaceService:GetProductInfo(game.PlaceId) end)
+local gameName = success and gameInfo.Name or "Unknown Game"
+local executor = identifyexecutor and identifyexecutor() or "Unknown"
+
+ShowNotify(
+    gameName, 
+    "Executor: "..executor.."\n"..
+    "Thank you for using xecret hub to enhance your experience.",
+    5
+)
+
+if not script_key then
+    ShowNotify("Authentication Failed", "Key not found", 5)
+    return
+end
+
+local api_status = api.check_key(script_key)
+ShowNotify("Authenticating", "Please wait...", 5)
+
+local setuphandlers = {
+    KEY_VALID = function()
+        pcall(api.purge_cache)
+      ShowNotify(
+    "🎉 Welcome, "..Players.LocalPlayer.DisplayName.."!",
+    "Total Executions: "..api_status.data.total_executions.."\n"..
+    (api_status.data.auth_expire > 0 and 
+        "Subscription expires in: "..FormatTime(api_status.data.auth_expire - os.time()).."\n" or 
+        "You have lifetime access.\n")..
+    "Thank you for being a valued user!",
+    10
+)
+        api.load_script()
+    end,
+    KEY_HWID_LOCKED = function() ShowNotify("HWID Locked", "Reset in Discord #get-script\nor use dashboard", 10) end,
+    KEY_EXPIRED = function() ShowNotify("Key Expired", "Your subscription has ended\nPlease renew to continue", 10) end,
+    KEY_BANNED = function() ShowNotify("Key Blacklisted", "Access revoked\nContact support for assistance", 10) end,
+    KEY_INCORRECT = function() ShowNotify("Invalid Key", "The key entered is not valid\nCheck for typos or contact support", 10) end
+}
+
+(setuphandlers[api_status.code] or function() ShowNotify("Authentication Error", api_status.message, 10) end)()
