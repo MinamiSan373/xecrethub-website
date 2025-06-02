@@ -107,7 +107,7 @@ ShowNotify(
     gameName, 
     "Executor: "..executor.."\n"..
     "Thank you for using xecret hub to enhance your experience.",
-    1
+    3
 )
 
 task.spawn(function()
@@ -120,12 +120,12 @@ end
 end)
 
 if not script_key then
-    ShowNotify("Authentication Failed", "Key not found", 1)
+    ShowNotify("Authentication Failed", "Key not found", 3)
     return
 end
 
 local api_status = api.check_key(script_key)
-ShowNotify("Authenticating", "Please wait...", 1)
+ShowNotify("Authenticating", "Please wait...", 3)
 
 local setuphandlers = {
     KEY_VALID = function()
@@ -141,10 +141,10 @@ local setuphandlers = {
 )
         api.load_script()
     end,
-    KEY_HWID_LOCKED = function() ShowNotify("HWID Locked", "Reset in Discord #get-script\nor use dashboard", 1) end,
-    KEY_EXPIRED = function() ShowNotify("Key Expired", "Your subscription has ended\nPlease renew to continue", 1) end,
-    KEY_BANNED = function() ShowNotify("Key Blacklisted", "Access revoked\nContact support for assistance", 1) end,
-    KEY_INCORRECT = function() ShowNotify("Invalid Key", "The key entered is not valid\nCheck for typos or contact support", 1) end
+    KEY_HWID_LOCKED = function() ShowNotify("HWID Locked", "Reset in Discord #get-script\nor use dashboard", 3) end,
+    KEY_EXPIRED = function() ShowNotify("Key Expired", "Your subscription has ended\nPlease renew to continue", 3) end,
+    KEY_BANNED = function() ShowNotify("Key Blacklisted", "Access revoked\nContact support for assistance", 3) end,
+    KEY_INCORRECT = function() ShowNotify("Invalid Key", "The key entered is not valid\nCheck for typos or contact support", 3) end
 }
 
-(setuphandlers[api_status.code] or function() ShowNotify("Authentication Error", api_status.message, 1) end)()
+(setuphandlers[api_status.code] or function() ShowNotify("Authentication Error", api_status.message, 3) end)()
