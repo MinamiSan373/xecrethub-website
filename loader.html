@@ -1,1 +1,159 @@
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/9682f69c634232479b8cc052f3033afc.lua"))()
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+gui.Name = "XecretHubCustomNotifyGUI"
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+
+local notifyHolder = Instance.new("Frame", gui)
+notifyHolder.Name = "XecretHubNotifyHolder"
+notifyHolder.Size = UDim2.new(0, 400, 1, 0)
+notifyHolder.Position = UDim2.new(0, 20, 1, -20)
+notifyHolder.BackgroundTransparency = 1
+
+local ActiveNotifies = {}
+
+local function createGradient(parent)
+    local gradient = Instance.new("UIGradient")
+    gradient.Rotation = 45
+    gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, Color3.fromRGB(30, 136, 229)),
+        ColorSequenceKeypoint.new(1, Color3.fromRGB(3, 169, 244))
+    }
+    gradient.Parent = parent
+    return gradient
+end
+
+function ShowNotify(title, message, duration)
+	duration = duration or 5
+
+	local notifyFrame = Instance.new("Frame")
+	notifyFrame.Size = UDim2.new(0, 0, 0, 0)
+	notifyFrame.Position = UDim2.new(0, 0, 1, - (#ActiveNotifies * 110))
+	notifyFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+	notifyFrame.BorderSizePixel = 0
+	notifyFrame.BackgroundTransparency = 1
+	notifyFrame.AnchorPoint = Vector2.new(0, 1)
+	notifyFrame.ClipsDescendants = true
+	notifyFrame.Parent = notifyHolder
+
+	local UICorner = Instance.new("UICorner", notifyFrame)
+	UICorner.CornerRadius = UDim.new(0, 14)
+
+	local topBar = Instance.new("Frame", notifyFrame)
+	topBar.Size = UDim2.new(1, 0, 0, 6)
+	topBar.Position = UDim2.new(0, 0, 0, 0)
+	topBar.BackgroundTransparency = 0
+	topBar.BorderSizePixel = 0
+	createGradient(topBar)
+
+	local titleLabel = Instance.new("TextLabel")
+	titleLabel.Size = UDim2.new(1, -40, 0, 28)
+	titleLabel.Position = UDim2.new(0, 20, 0, 12)
+	titleLabel.Text = title
+	titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	titleLabel.TextSize = 21
+	titleLabel.Font = Enum.Font.GothamBold
+	titleLabel.BackgroundTransparency = 1
+	titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+	titleLabel.Parent = notifyFrame
+
+	local messageLabel = Instance.new("TextLabel")
+	messageLabel.Size = UDim2.new(1, -40, 0, 60)
+	messageLabel.Position = UDim2.new(0, 20, 0, 44)
+	messageLabel.Text = message
+	messageLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+	messageLabel.TextSize = 16
+	messageLabel.Font = Enum.Font.Gotham
+	messageLabel.BackgroundTransparency = 1
+	messageLabel.TextWrapped = true
+	messageLabel.TextXAlignment = Enum.TextXAlignment.Left
+	messageLabel.TextYAlignment = Enum.TextYAlignment.Top
+	messageLabel.Parent = notifyFrame
+
+	table.insert(ActiveNotifies, notifyFrame)
+
+	for i, frame in ipairs(ActiveNotifies) do
+		TweenService:Create(frame, TweenInfo.new(0.4, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+			Position = UDim2.new(0, 0, 0, (i - 1) * 110)
+		}):Play()
+	end
+
+	TweenService:Create(notifyFrame, TweenInfo.new(0.35, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+		Size = UDim2.new(0, 400, 0, 110),
+		BackgroundTransparency = 0
+	}):Play()
+
+	task.wait(duration)
+
+	TweenService:Create(notifyFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.In), {
+		Size = UDim2.new(0, 0, 0, 0),
+		BackgroundTransparency = 1
+	}):Play()
+
+	task.delay(0.3, function()
+		notifyFrame:Destroy()
+		for i, frame in ipairs(ActiveNotifies) do
+			if frame == notifyFrame then
+				table.remove(ActiveNotifies, i)
+				break
+			end
+		end
+		for i, frame in ipairs(ActiveNotifies) do
+			TweenService:Create(frame, TweenInfo.new(0.25, Enum.EasingStyle.Quart, Enum.EasingDirection.Out), {
+				Position = UDim2.new(0, 0, 0, (i - 1) * 110)
+			}):Play()
+		end
+	end)
+end
+
+local Services = loadstring(game:HttpGet("https://raw.githubusercontent.com/AccountBurner/Utility/refs/heads/main/Services"))()
+local api = loadstring(game:HttpGet("https://sdkapi-public.luarmor.net/library.lua"))()
+api.script_id = "9682f69c634232479b8cc052f3033afc"
+local MarketplaceService, Players = Services:Get("MarketplaceService", "Players");
+local player = Players.LocalPlayer;
+
+local function formatTime(s)
+    local d, h, m = math.floor(s/86400), math.floor((s%86400)/3600), math.floor((s%3600)/60)
+    return d > 0 and d.."d "..h.."h" or h > 0 and h.."h "..m.."m" or m.."m "..math.floor(s%60).."s"
+end
+
+local success, gameInfo = pcall(function() return MarketplaceService:GetProductInfo(game.PlaceId) end)
+local gameName = success and gameInfo.Name or "Unknown Game"
+local executor = identifyexecutor and identifyexecutor() or "Unknown"
+
+ShowNotify(gameName, "Executing on platform: "..executor, 3)
+
+if not script_key then
+    ShowNotify("🚫 Authentication Failed", "Key not detected! Please ensure your key is valid.", 5)
+    return
+end
+
+ShowNotify("⏳ Authenticating...", "Validating your key, please wait.", 1)
+local status = api.check_key(script_key)
+
+local handlers = {
+    KEY_VALID = function()
+        pcall(api.purge_cache)
+        ShowNotify("🎉 Welcome, "..player.DisplayName.."!", 
+                   "Total executions: "..status.data.total_executions.."\nSubscription: "..(status.data.auth_expire > 0 and "Expires in "..formatTime(status.data.auth_expire - os.time()) or "Lifetime Access"), 7)
+        api.load_script()
+    end,
+    KEY_HWID_LOCKED = function()
+        ShowNotify("🔒 HWID Locked", "Reset your key via Discord #get-script channel\nor the dashboard.", 10)
+    end,
+    KEY_EXPIRED = function()
+        ShowNotify("⏳ Key Expired", "Your subscription ended.\nPlease renew to continue access.", 10)
+    end,
+    KEY_BANNED = function()
+        ShowNotify("⛔ Access Revoked", "Your key has been blacklisted.\nContact support for assistance.", 10)
+    end,
+    KEY_INCORRECT = function()
+        ShowNotify("❌ Invalid Key", "The entered key is invalid.\nCheck your input or contact support.", 10)
+    end
+}
+
+(handlers[status.code] or function()
+    ShowNotify("⚠️ Authentication Error", status.message, 10)
+end)()
