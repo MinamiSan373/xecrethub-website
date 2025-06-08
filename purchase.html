@@ -162,9 +162,91 @@
     #modalContent button:hover {
       background: #ffffff;
     }
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 22px;
+      cursor: pointer;
+      z-index: 10001;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger div {
+      background-color: white;
+      height: 4px;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .menu-dropdown {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      background-color: #111;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      display: none;
+      flex-direction: column;
+      min-width: 160px;
+      z-index: 10000;
+      user-select: none;
+    }
+
+    .menu-dropdown a {
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .menu-dropdown a:hover {
+      background-color: #fff;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .menu-dropdown.show {
+      display: flex;
+    }
   </style>
 </head>
 <body>
+
+<div class="hamburger" id="hamburger">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+<nav class="menu-dropdown" id="menuDropdown">
+  <a href="index.html">Home</a>
+  <a href="purchase.html">Purchase</a>
+  <a href="supported-games.html">Supported Games</a>
+  <a href="executors.html">Supported Executors</a>
+</nav>
+
 
 <h1>Purchase</h1>
 <div class="plans">
@@ -281,6 +363,8 @@
 
 <!-- JavaScript -->
 <script>
+   const hamburger = document.getElementById('hamburger')
+  const menuDropdown = document.getElementById('menuDropdown')
   function isLoggedIn() {
     return !!localStorage.getItem('loggedInUser');
   }
@@ -291,6 +375,17 @@
   function closeModal() {
     document.getElementById('modal').style.display = 'none';
   }
+   hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active')
+    menuDropdown.classList.toggle('show')
+  })
+
+  document.addEventListener('click', e => {
+    if (!hamburger.contains(e.target) && !menuDropdown.contains(e.target)) {
+      hamburger.classList.remove('active')
+      menuDropdown.classList.remove('show')
+    }
+  })
   function setupPlan(planId, purchaseBtnId, methodsId, purchaseNowBtnId, radioName) {
     const purchaseBtn = document.getElementById(purchaseBtnId);
     const methodsDiv = document.getElementById(methodsId);
