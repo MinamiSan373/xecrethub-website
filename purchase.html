@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Purchase - Xecret Hub</title>
+  <title>Purchase - Robux Shop</title>
   <link rel="icon" type="image/png" href="https://i.ibb.co/VYNV7tYV/Xecret-removebg-preview.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -18,29 +18,21 @@
       flex-direction: column;
       align-items: center;
     }
-  h1 {
-  font-weight: 1000;
-  font-size: 40px;
-  margin-bottom: 15px;
-  letter-spacing: 1.5px;
-  text-align: center;
-  line-height: 3; 
-}
-
-    p.subtitle {
-      font-weight: 600;
-      color: #aaa;
-      margin-bottom: 40px;
+    h1 {
+      font-weight: 1000;
+      font-size: 40px;
+      margin-bottom: 15px;
+      letter-spacing: 1.5px;
       text-align: center;
-      font-size: 1.3rem;
+      line-height: 3;
     }
     .plans {
       display: flex;
-      gap: 40px;
       flex-wrap: wrap;
       justify-content: center;
       max-width: 1100px;
       width: 100%;
+      gap: 20px; 
     }
     .plan {
       background-color: #111;
@@ -93,6 +85,11 @@
       margin-right: 10px;
       cursor: pointer;
     }
+    label.payment-option img.payment-image {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+    }
     .purchase-btn, .purchase-now-btn {
       background: #ffffff;
       border: none;
@@ -124,13 +121,12 @@
       border-radius: 16px;
     }
     footer {
-       width: 100%;
+      width: 100%;
       margin-top: 60px;
       font-size: 0.9rem;
       color: #555;
       user-select: none;
       text-align: center;
-      width: 100%;
     }
     #modal {
       position: fixed;
@@ -166,196 +162,169 @@
     #modalContent button:hover {
       background: #ffffff;
     }
-    .hamburger {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 30px;
-      height: 25px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      z-index: 1100;
-    }
-    .hamburger div {
-      height: 4px;
-      background: #f7f5f5;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-    .menu-dropdown {
-      position: fixed;
-      top: 60px;
-      right: 20px;
-      background: #111;
-      border-radius: 10px;
-      display: none;
-      flex-direction: column;
-      min-width: 180px;
-      z-index: 1050;
-    }
-    .menu-dropdown.show {
-      display: flex;
-    }
-    .menu-dropdown a {
-      color: #ffffff;
-      text-decoration: none;
-      padding: 12px 20px;
-      font-weight: 600;
-      border-bottom: 1px solid #faf6f633;
-    }
-    .menu-dropdown a:last-child {
-      border-bottom: none;
-    }
-    .menu-dropdown a:hover {
-      background: #ffffff;
-      color: #000;
-    }
   </style>
 </head>
 <body>
 
-  <h1>Purchase</h1>
-  <div class="plans">
-    <div class="plan" id="monthlyPlan">
-      <h2>Monthly Access</h2>
-      <button class="purchase-btn" id="monthlyPurchaseBtn">Purchase</button>
-      <div class="payment-methods" id="monthlyMethods" style="display:none;">
-        <label class="payment-option" data-url="https://www.roblox.com/catalog/93578935960753">
-          <input type="radio" name="monthly" />
-          <span>1,000 Robux</span>
-        </label>
-        <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/200">
-          <input type="radio" name="monthly" />
-          <span>6$ Paypal</span>
-        </label>
-        <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
-          <input type="radio" name="monthly" />
-          <span>6$ TrueMoney</span>
-        </label>
-      </div>
-      <button class="purchase-now-btn" id="monthlyPurchaseNowBtn">Purchase Now</button>
+<h1>Purchase</h1>
+<div class="plans">
+
+  <!-- Monthly Plan -->
+  <div class="plan" id="monthlyPlan">
+    <h2>Monthly Access</h2>
+    <button class="purchase-btn" id="monthlyPurchaseBtn">Purchase</button>
+    <div class="payment-methods" id="monthlyMethods" style="display:none;">
+      <label class="payment-option" data-url="https://www.roblox.com/catalog/93578935960753">
+        <input type="radio" name="monthly" />
+        <img src="https://play-lh.googleusercontent.com/7cIIPlWm4m7AGqVpEsIfyL-HW4cQla4ucXnfalMft1TMIYQIlf2vqgmthlZgbNAQoaQ" alt="Robux" class="payment-image" />
+        <span>1,000 Robux</span>
+      </label>
+      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/200">
+        <input type="radio" name="monthly" />
+        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
+        <span>6$ Paypal</span>
+      </label>
+      <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
+        <input type="radio" name="monthly" />
+        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
+        <span>6$ TrueMoney</span>
+      </label>
     </div>
+    <button class="purchase-now-btn" id="monthlyPurchaseNowBtn">Purchase Now</button>
+  </div>
 
-    <div class="plan" id="lifetimePlan">
-      <h2>Lifetime Access</h2>
-      <button class="purchase-btn" id="lifetimePurchaseBtn">Purchase</button>
-      <div class="payment-methods" id="lifetimeMethods" style="display:none;">
-        <label class="payment-option" data-url="https://www.roblox.com/catalog/77370347806343">
-          <input type="radio" name="lifetime" />
-          <span>2,000 Robux</span>
-        </label>
-        <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/350">
-          <input type="radio" name="lifetime" />
-          <span>11$ Paypal</span>
-        </label>
-        <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
-          <input type="radio" name="lifetime" />
-          <span>11$ TrueMoney</span>
-        </label>
-      </div>
-      <button class="purchase-now-btn" id="lifetimePurchaseNowBtn">Purchase Now</button>
+  <!-- Lifetime Plan -->
+  <div class="plan" id="lifetimePlan">
+    <h2>Lifetime Access</h2>
+    <button class="purchase-btn" id="lifetimePurchaseBtn">Purchase</button>
+    <div class="payment-methods" id="lifetimeMethods" style="display:none;">
+      <label class="payment-option" data-url="https://www.roblox.com/catalog/77370347806343">
+        <input type="radio" name="lifetime" />
+        <img src="https://play-lh.googleusercontent.com/7cIIPlWm4m7AGqVpEsIfyL-HW4cQla4ucXnfalMft1TMIYQIlf2vqgmthlZgbNAQoaQ" alt="Robux" class="payment-image" />
+        <span>2,000 Robux</span>
+      </label>
+      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/350">
+        <input type="radio" name="lifetime" />
+        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
+        <span>11$ Paypal</span>
+      </label>
+      <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
+        <input type="radio" name="lifetime" />
+        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
+        <span>11$ TrueMoney</span>
+      </label>
     </div>
+    <button class="purchase-now-btn" id="lifetimePurchaseNowBtn">Purchase Now</button>
   </div>
 
-  <div class="how-to">
-    <h2>How to Purchase</h2>
-    <p>1. Click <strong>Purchase</strong> on your desired plan.</p>
-    <p>2. Select a payment method. (Monthly or Lifetime)</p>
-    <p>3. Click <strong>Purchase Now</strong> to go directly to the payment page.</p>
-    <p>4. After payment, open a ticket in the <strong>🎫〢<a href="https://discord.gg/xecrethub" target="_blank" rel="noopener noreferrer">support</a></strong> Discord channel with your proof.</p>
-  </div>
-
-  <footer>
-    &copy; 2025 Xecret Hub - Purchase.
-  </footer>
-
-  <div id="modal">
-    <div id="modalContent">
-      <div id="modalMessage"></div>
-      <button onclick="closeModal()">OK</button>
+  <!-- Robux Plan -->
+  <div class="plan" id="robuxPlan">
+    <h2>1,000 Robux</h2>
+    <button class="purchase-btn" id="robuxPurchaseBtn">Purchase</button>
+    <div class="payment-methods" id="robuxMethods" style="display:none;">
+      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/200">
+        <input type="radio" name="robux" />
+        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
+        <span>6$ Paypal</span>
+      </label>
+      <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
+        <input type="radio" name="robux" />
+        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
+        <span>6$ TrueMoney</span>
+      </label>
     </div>
+    <button class="purchase-now-btn" id="robuxPurchaseNowBtn">Purchase Now</button>
   </div>
 
-  <div class="hamburger" id="hamburger">
-    <div></div>
-    <div></div>
-    <div></div>
+  <!-- 2000 Robux Plan -->
+  <div class="plan" id="robux2000Plan">
+    <h2>2,000 Robux</h2>
+    <button class="purchase-btn" id="robux2000PurchaseBtn">Purchase</button>
+    <div class="payment-methods" id="robux2000Methods" style="display:none;">
+      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/350">
+        <input type="radio" name="robux2000" />
+        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
+        <span>11$ Paypal</span>
+      </label>
+      <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
+        <input type="radio" name="robux2000" />
+        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
+        <span>11$ TrueMoney</span>
+      </label>
+    </div>
+    <button class="purchase-now-btn" id="robux2000PurchaseNowBtn">Purchase Now</button>
   </div>
 
-  <nav class="menu-dropdown" id="menuDropdown">
-    <a href="index.html">Home</a>
-    <a href="purchase.html">Purchase</a>
-    <a href="supported-games.html">Supported Games</a>
-    <a href="executors.html">Supported Executors</a>
-  </nav>
+</div> <!-- END of .plans -->
 
-  <script>
-    function isLoggedIn() {
-      return !!localStorage.getItem('loggedInUser');
-    }
+<!-- How to Purchase -->
+<div class="how-to">
+  <h2>How to Purchase</h2>
+  <p>1. Click <strong>Purchase</strong> on your desired plan.</p>
+  <p>2. Select a payment method.</p>
+  <p>3. Click <strong>Purchase Now</strong> to go to payment page.</p>
+  <p>4. After payment, contact support with proof.</p>
+</div>
 
-    function showModal(message) {
-      document.getElementById('modalMessage').textContent = message;
-      document.getElementById('modal').style.display = 'flex';
-    }
+<!-- Footer -->
+<footer>
+  &copy; 2025 Xecret Hub - Purchase.
+</footer>
 
-    function closeModal() {
-      document.getElementById('modal').style.display = 'none';
-    }
+<!-- Modal -->
+<div id="modal">
+  <div id="modalContent">
+    <div id="modalMessage"></div>
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
 
-    function setupPlan(planId, purchaseBtnId, methodsId, purchaseNowBtnId, radioName) {
-      const purchaseBtn = document.getElementById(purchaseBtnId);
-      const methodsDiv = document.getElementById(methodsId);
-      const purchaseNowBtn = document.getElementById(purchaseNowBtnId);
-      let selectedUrl = null;
-
-      purchaseBtn.addEventListener('click', () => {
-        methodsDiv.style.display = 'flex';
-        purchaseBtn.style.display = 'none';
-      });
-
-      const radios = methodsDiv.querySelectorAll(`input[name="${radioName}"]`);
-      radios.forEach(radio => {
-        radio.addEventListener('change', () => {
-          const label = radio.closest('label');
-          selectedUrl = label.getAttribute('data-url');
-          purchaseNowBtn.style.display = 'inline-block';
-        });
-      });
-
-      purchaseNowBtn.addEventListener('click', () => {
-        if (!isLoggedIn()) {
-          showModal('You are not logged in yet.');
-          return;
-        }
-        if (!selectedUrl) {
-          showModal('Please select a payment method before proceeding.');
-          return;
-        }
-        window.open(selectedUrl, '_blank');
-      });
-    }
-
-    setupPlan('monthlyPlan', 'monthlyPurchaseBtn', 'monthlyMethods', 'monthlyPurchaseNowBtn', 'monthly');
-    setupPlan('lifetimePlan', 'lifetimePurchaseBtn', 'lifetimeMethods', 'lifetimePurchaseNowBtn', 'lifetime');
-
-    const hamburger = document.getElementById('hamburger');
-    const menuDropdown = document.getElementById('menuDropdown');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      menuDropdown.classList.toggle('show');
+<!-- JavaScript -->
+<script>
+  function isLoggedIn() {
+    return !!localStorage.getItem('loggedInUser');
+  }
+  function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('modal').style.display = 'flex';
+  }
+  function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+  }
+  function setupPlan(planId, purchaseBtnId, methodsId, purchaseNowBtnId, radioName) {
+    const purchaseBtn = document.getElementById(purchaseBtnId);
+    const methodsDiv = document.getElementById(methodsId);
+    const purchaseNowBtn = document.getElementById(purchaseNowBtnId);
+    let selectedUrl = null;
+    purchaseBtn.addEventListener('click', () => {
+      methodsDiv.style.display = 'flex';
+      purchaseBtn.style.display = 'none';
     });
-  </script>
+    const radios = methodsDiv.querySelectorAll(`input[name="${radioName}"]`);
+    radios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        const label = radio.closest('label');
+        selectedUrl = label.getAttribute('data-url');
+        purchaseNowBtn.style.display = 'inline-block';
+      });
+    });
+    purchaseNowBtn.addEventListener('click', () => {
+      if (!isLoggedIn()) {
+        showModal('You are not logged in yet.');
+        return;
+      }
+      if (!selectedUrl) {
+        showModal('Please select a payment method before proceeding.');
+        return;
+      }
+      window.open(selectedUrl, '_blank');
+    });
+  }
+  setupPlan('monthlyPlan', 'monthlyPurchaseBtn', 'monthlyMethods', 'monthlyPurchaseNowBtn', 'monthly');
+  setupPlan('lifetimePlan', 'lifetimePurchaseBtn', 'lifetimeMethods', 'lifetimePurchaseNowBtn', 'lifetime');
+  setupPlan('robuxPlan', 'robuxPurchaseBtn', 'robuxMethods', 'robuxPurchaseNowBtn', 'robux');
+  setupPlan('robux2000Plan', 'robux2000PurchaseBtn', 'robux2000Methods', 'robux2000PurchaseNowBtn', 'robux2000');
+</script>
+
 </body>
 </html>
