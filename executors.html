@@ -235,6 +235,8 @@
 
 <body>
 
+<div id="music-player" style="display: none;"></div>
+
   <div class="hamburger" id="hamburger">
     <div></div>
     <div></div>
@@ -574,19 +576,54 @@ document.addEventListener('mousemove', (e) => {
   mouseY = e.clientY;
 });
 
+
 function drawBlur() {
   ctx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
-  
-  const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 120);
-  gradient.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
+
+  const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 300); 
+  gradient.addColorStop(0, 'rgba(255, 255, 255, 0.25)');
+  gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.1)');
   gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
+
   ctx.fillStyle = gradient;
-  ctx.fillRect(mouseX - 150, mouseY - 150, 300, 300);
+  ctx.fillRect(mouseX - 300, mouseY - 300, 600, 600); 
 
   requestAnimationFrame(drawBlur);
 }
 drawBlur();
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+  let unmuted = false;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('music-player', {
+      height: '0',
+      width: '0',
+      videoId: 'ZGS8WAxwh98', 
+      playerVars: {
+        autoplay: 1,
+        loop: 1,
+        playlist: 'ZGS8WAxwh98',
+        controls: 0,
+        mute: 1
+      },
+      events: {
+        onReady: (event) => {
+          event.target.playVideo();
+        }
+      }
+    });
+  }
+
+  document.addEventListener('click', () => {
+    if (player && !unmuted) {
+      player.unMute();
+      unmuted = true;
+    }
+  }, { once: true });
 </script>
 
   <footer>
