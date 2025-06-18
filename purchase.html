@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Purchase - Xecret Hub</title>
-  <link rel="icon" type="image/png" href="https://i.ibb.co/VYNV7tYV/Xecret-removebg-preview.png" />
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nr8T32Gg/Icon-512-removebg-preview.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
     body {
@@ -193,6 +193,48 @@
     .hamburger.active div:nth-child(3) {
       transform: rotate(-45deg) translate(6px, -6px);
     }
+.animated-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.animated-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  animation: move 20s infinite ease-in-out alternate;
+}
+
+.circle1 {
+  background: #00f0ff;
+  width: 400px; height: 400px;
+  top: 10%; left: 15%;
+  animation-delay: 0s;
+}
+
+.circle2 {
+  background: #ff00ff;
+  width: 500px; height: 500px;
+  top: 50%; left: 60%;
+  animation-delay: 5s;
+}
+
+.circle3 {
+  background: #ff8800;
+  width: 300px; height: 300px;
+  top: 80%; left: 30%;
+  animation-delay: 10s;
+}
+
+@keyframes move {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  100% { transform: translate(-100px, 100px) scale(1.2); }
+}
 
     .menu-dropdown {
       position: fixed;
@@ -230,8 +272,23 @@
     .menu-dropdown.show {
       display: flex;
     }
+    #blur-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
   </style>
 </head>
+<canvas id="blur-canvas"></canvas>
+<div class="animated-background">
+  <div class="animated-circle circle1"></div>
+  <div class="animated-circle circle2"></div>
+  <div class="animated-circle circle3"></div>
+</div>
+
 <body>
 
 <div class="hamburger" id="hamburger">
@@ -266,7 +323,7 @@
         <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
         <span>6$ Paypal</span>
       </label>
-      <label class="payment-option" data-url="https://discord.com/channels/1328392700294070313/1348103796827357274">
+      <label class="payment-option" data-url="https://xecrethubth.betashift.xyz/">
         <input type="radio" name="monthly" />
         <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
         <span>6$ TrueMoney</span>
@@ -290,51 +347,13 @@
         <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
         <span>11$ Paypal</span>
       </label>
-      <label class="payment-option" data-url="https://discord.com/channels/1328392700294070313/1348103796827357274">
+      <label class="payment-option" data-url="https://xecrethubth.betashift.xyz/">
         <input type="radio" name="lifetime" />
         <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
         <span>11$ TrueMoney</span>
       </label>
     </div>
     <button class="purchase-now-btn" id="lifetimePurchaseNowBtn">Purchase Now</button>
-  </div>
-
-  <!-- Robux Plan -->
-  <div class="plan" id="robuxPlan">
-    <h2>700 Robux</h2>
-    <button class="purchase-btn" id="robuxPurchaseBtn">Purchase</button>
-    <div class="payment-methods" id="robuxMethods" style="display:none;">
-      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/1ห0">
-        <input type="radio" name="robux" />
-        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
-        <span>3$ Paypal</span>
-      </label>
-      <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
-        <input type="radio" name="robux" />
-        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
-        <span>3$ TrueMoney</span>
-      </label>
-    </div>
-    <button class="purchase-now-btn" id="robuxPurchaseNowBtn">Purchase Now</button>
-  </div>
-
-  <!-- 2000 Robux Plan -->
-  <div class="plan" id="robux2000Plan">
-    <h2>1,400 Robux</h2>
-    <button class="purchase-btn" id="robux2000PurchaseBtn">Purchase</button>
-    <div class="payment-methods" id="robux2000Methods" style="display:none;">
-      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/200">
-        <input type="radio" name="robux2000" />
-        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
-        <span>6$ Paypal</span>
-      </label>
-      <label class="payment-option" data-url="https://i.ibb.co/6fP7W81/496508881-1044363377649241-6541895430601421498-n.png">
-        <input type="radio" name="robux2000" />
-        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
-        <span>6$ TrueMoney</span>
-      </label>
-    </div>
-    <button class="purchase-now-btn" id="robux2000PurchaseNowBtn">Purchase Now</button>
   </div>
 
 </div> 
@@ -417,9 +436,38 @@
   }
   setupPlan('monthlyPlan', 'monthlyPurchaseBtn', 'monthlyMethods', 'monthlyPurchaseNowBtn', 'monthly');
   setupPlan('lifetimePlan', 'lifetimePurchaseBtn', 'lifetimeMethods', 'lifetimePurchaseNowBtn', 'lifetime');
-  setupPlan('robuxPlan', 'robuxPurchaseBtn', 'robuxMethods', 'robuxPurchaseNowBtn', 'robux');
-  setupPlan('robux2000Plan', 'robux2000PurchaseBtn', 'robux2000Methods', 'robux2000PurchaseNowBtn', 'robux2000');
 </script>
+<script>
+const blurCanvas = document.getElementById('blur-canvas');
+const ctx = blurCanvas.getContext('2d');
 
+function resizeCanvas() {
+  blurCanvas.width = window.innerWidth;
+  blurCanvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+let mouseX = -1000, mouseY = -1000;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function drawBlur() {
+  ctx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
+  
+  const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 120);
+  gradient.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
+  gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+  ctx.fillStyle = gradient;
+  ctx.fillRect(mouseX - 150, mouseY - 150, 300, 300);
+
+  requestAnimationFrame(drawBlur);
+}
+drawBlur();
+</script>
 </body>
 </html>
