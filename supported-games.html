@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Games - Xecret Hub</title>
-  <link rel="icon" type="image/png" href="https://i.ibb.co/VYNV7tYV/Xecret-removebg-preview.png" />
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/nr8T32Gg/Icon-512-removebg-preview.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
@@ -48,6 +48,49 @@
       max-width: 1200px;
       margin: auto;
     }
+    .animated-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.animated-circle {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  animation: move 20s infinite ease-in-out alternate;
+}
+
+.circle1 {
+  background: #00f0ff;
+  width: 400px; height: 400px;
+  top: 10%; left: 15%;
+  animation-delay: 0s;
+}
+
+.circle2 {
+  background: #ff00ff;
+  width: 500px; height: 500px;
+  top: 50%; left: 60%;
+  animation-delay: 5s;
+}
+
+.circle3 {
+  background: #ff8800;
+  width: 300px; height: 300px;
+  top: 80%; left: 30%;
+  animation-delay: 10s;
+}
+
+@keyframes move {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  100% { transform: translate(-100px, 100px) scale(1.2); }
+}
+
 footer {
    width: 100%;
   position: fixed;
@@ -161,8 +204,23 @@ footer {
     .menu-dropdown.show {
       display: flex;
     }
+    #blur-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
   </style>
 </head>
+<canvas id="blur-canvas"></canvas>
+<div class="animated-background">
+  <div class="animated-circle circle1"></div>
+  <div class="animated-circle circle2"></div>
+  <div class="animated-circle circle3"></div>
+</div>
+
 <body>
 
   <div class="hamburger" id="hamburger">
@@ -381,6 +439,13 @@ footer {
   </a>
 </li>
 
+<li class="game-item locked" data-locked="true" data-game-name="Steal a Brainrot">
+  <a href="javascript:void(0);">
+    <img src="https://tr.rbxcdn.com/180DAY-adec526a1c293827ff28ea63dc91dc83/768/432/Image/Webp/noFilter" alt="Steal a Brainrot" />
+    <span>Steal a Brainrot</span>
+  </a>
+</li>
+
 
 <li class="game-item locked" data-locked="true" data-game-name="Volleyball Zero">
   <a href="javascript:void(0);">
@@ -423,6 +488,7 @@ footer {
   </ul>
 
 <script>
+  
   const hamburger = document.getElementById('hamburger')
   const menuDropdown = document.getElementById('menuDropdown')
   const searchInput = document.getElementById('searchInput');
@@ -482,7 +548,38 @@ footer {
     performSearch();
   });
 </script>
+<script>
+const blurCanvas = document.getElementById('blur-canvas');
+const ctx = blurCanvas.getContext('2d');
 
+function resizeCanvas() {
+  blurCanvas.width = window.innerWidth;
+  blurCanvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+let mouseX = -1000, mouseY = -1000;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function drawBlur() {
+  ctx.clearRect(0, 0, blurCanvas.width, blurCanvas.height);
+  
+  const gradient = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, 120);
+  gradient.addColorStop(0, 'rgba(255, 255, 255, 0.15)');
+  gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+
+  ctx.fillStyle = gradient;
+  ctx.fillRect(mouseX - 150, mouseY - 150, 300, 300);
+
+  requestAnimationFrame(drawBlur);
+}
+drawBlur();
+</script>
   <footer>
     &copy; 2025 Xecret Hub - Supported Games.
   </footer>
