@@ -32,14 +32,6 @@
       text-align: center;
       line-height: 3;
     }
-    h13 {
-      font-weight: 500;
-      font-size: 20px;
-      margin-bottom: 15px;
-      letter-spacing: 1.5px;
-      text-align: center;
-      line-height: 3;
-    }
     .plans {
       display: flex;
       flex-wrap: wrap;
@@ -240,6 +232,25 @@ backdrop-filter: blur(20px);
 .navbar-center a:hover {
   color: white;
 }
+.executor-bar-fill.low {
+  background: #ff4c4c; /* แดง */
+}
+.executor-bar-fill.medium {
+  background: #ff9900; /* ส้ม */
+}
+.executor-bar-fill.high {
+  background: #2ecc71; /* เขียว */
+}
+
+.executor-percent.low {
+  color: #ff4c4c;
+}
+.executor-percent.medium {
+  color: #ff9900;
+}
+.executor-percent.high {
+  color: #2ecc71;
+}
 
 .navbar-right {
   display: flex;
@@ -381,43 +392,150 @@ backdrop-filter: blur(20px);
   color: #00ffd0;
 }
 .executor-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  max-width: 1000px;
-  margin: 0 auto;              
-   padding: 20px 0 80px 0;
-  list-style: none;
-  justify-content: center;     
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  max-width: 700px;
+  width: 100%;
+  margin: 40px auto;
 }
+
 
 .executor-container {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* หรือไม่ใส่เลยก็ได้ */
-  margin-top: 0;
+}
+.executor-item {
+ padding: 16px 24px;
+  min-width: 320px;
+  width: 100%;
+ max-width: 680px; 
+ display: flex;
+  flex-direction: column;
+   gap: 8px;
+  text-align: left;                        
+  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+.executor-bar-container {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+}
+.executor-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.executor-bar {
+  background: #222;
+  border-radius: 10px;
+  height: 10px;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
-.executor-item {
-   display: block;  /* 💡 เพื่อให้ display = block ตอนแสดง/ซ่อน */
-  padding: 20px 28px;
-  font-size: 1.1rem;
-  background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 18px;
-  color: #fff;
-  font-weight: 700;
-  text-align: center;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+.executor-bar-fill {
+  background: #ffffff;
+  height: 100%;
+  transition: width 0.3s ease;
 }
+
+.executor-percent {
+  font-weight: bold;
+  min-width: 40px;
+   margin-left: 12px;
+  color: #f90; /* ส้มกลาง */
+}
+.executor-tag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-left: 8px;
+  font-weight: 600;
+  border: 1px solid;
+  text-align: center;
+  min-width: 60px;
+}
+.executor-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.executor-name-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; 
+}
+.executor-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.executor-platform {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px; 
+  margin-left: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ccc;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+.executor-platform.pc {
+  color: #fdffff; 
+  border-color: #ffffff;
+  background: rgba(102, 194, 255, 0.1);
+}
+
+
+.executor-platform.mobile {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.executor-tag.low {
+  background-color: rgba(255, 76, 76, 0.1);
+}
+.executor-tag.medium {
+  background-color: rgba(255, 153, 0, 0.1);
+}
+.executor-tag.low {
+  background-color: rgba(255, 76, 76, 0.1);
+  color: #ff4c4c;
+}
+.executor-tag.medium {
+  background-color: rgba(255, 153, 0, 0.1);
+  color: #ff9900;
+}
+.executor-tag.high {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #2ecc71;
+}
+
+
 .executor-item:hover {
-  transform: scale(1.08);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.03);
+}
+
+
+.executor-item:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 
@@ -1064,7 +1182,6 @@ a:hover {
 <!--------------------Game-------------------->
 <section class="game-header">
   <h1>Supported Executors</h1>
-  <h13>A Full List of Supported Xecret Hub Executors</h13>
   <p id="gameCount">Currently supporting 0 executors</p>
 </section>
 
@@ -1075,33 +1192,170 @@ a:hover {
 </div>
 
 
-<div class="executor-container">
-<ul class="executor-list">
-  <li class="executor-item">Wave</li>
-  <li class="executor-item">AWP</li>
-  <li class="executor-item">Zenith</li>
-  <li class="executor-item">Potassium</li>
-  <li class="executor-item">Arecus X</li>
-  <li class="executor-item">AppleWare</li>
-  <li class="executor-item">Cryptic</li>
-  <li class="executor-item">Ronix</li>
-  <li class="executor-item">Swift</li>
-  <li class="executor-item">Sirhurt</li>
-  <li class="executor-item">Atlantis</li>
-  <li class="executor-item">Seliware</li>
-  <li class="executor-item">MacSploit</li>
-  <li class="executor-item">Delta</li>
-  <li class="executor-item">Codex</li>
-  <li class="executor-item">Krnl</li>
-  <li class="executor-item">Fluxus</li>
-  <li class="executor-item">Nebula</li>
-  <li class="executor-item">Volcano</li>
-  <li class="executor-item">Velocity</li>
-  <li class="executor-item">Visual</li>
-  <li class="executor-item">Xeno</li>
-  <li class="executor-item">Solara</li>
-</ul>
+<div class="executor-list">
+  <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">Wave</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Paid</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 100%;"></div>
+  </div>
+  <div class="executor-percent">100%</div>
+  <div class="executor-tag high">High</div>
+</div>
+</div>
 
+ <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">AWP</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Paid</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 100%;"></div>
+  </div>
+  <div class="executor-percent">100%</div>
+  <div class="executor-tag high">High</div>
+</div>
+</div>
+
+ <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">Zenith</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Paid</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 100%;"></div>
+  </div>
+  <div class="executor-percent">100%</div>
+  <div class="executor-tag high">High</div>
+</div>
+</div>
+
+ <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">Potassium</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Paid</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 100%;"></div>
+  </div>
+  <div class="executor-percent">100%</div>
+  <div class="executor-tag high">High</div>
+</div>
+</div>
+
+
+
+<div class="executor-item">
+  <div class="executor-header">
+    <div class="executor-name-wrapper">
+      <span class="executor-name">Delta</span>
+      <span class="executor-platform mobile">Mobile</span>
+      <span class="executor-platform mobile">Free</span>
+    </div>
+  </div>
+  <div class="executor-bar-container">
+    <div class="executor-bar">
+      <div class="executor-bar-fill" style="width: 80%;"></div>
+    </div>
+    <div class="executor-percent">80%</div>
+    <div class="executor-tag low">High</div>
+  </div>
+</div>
+
+
+ <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">Swift</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Free</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 70%;"></div>
+  </div>
+  <div class="executor-percent">70%</div>
+  <div class="executor-tag high">Medium</div>
+</div>
+</div>
+
+
+ <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">Velocity</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Free</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 50%;"></div>
+  </div>
+  <div class="executor-percent">50%</div>
+  <div class="executor-tag high">Medium</div>
+</div>
+</div>
+
+
+<div class="executor-item">
+  <div class="executor-header">
+    <div class="executor-name-wrapper">
+      <span class="executor-name">Codex</span>
+      <span class="executor-platform mobile">Mobile</span>
+      <span class="executor-platform mobile">Free</span>
+    </div>
+  </div>
+  <div class="executor-bar-container">
+    <div class="executor-bar">
+      <div class="executor-bar-fill" style="width: 80%;"></div>
+    </div>
+    <div class="executor-percent">50%</div>
+    <div class="executor-tag low">Medium</div>
+  </div>
+</div>
+
+
+ <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">Xeno</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Free</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 30%;"></div>
+  </div>
+  <div class="executor-percent">30%</div>
+  <div class="executor-tag high">Low</div>
+</div>
+</div>
+
+ <div class="executor-item">
+ <div class="executor-header">
+  <div class="executor-name">Solara</div>
+  <div class="executor-platform pc">PC</div>
+  <div class="executor-platform pc">Free</div>
+</div>
+<div class="executor-bar-container">
+  <div class="executor-bar">
+    <div class="executor-bar-fill" style="width: 20%;"></div>
+  </div>
+  <div class="executor-percent">20%</div>
+  <div class="executor-tag high">Low</div>
+</div>
+</div>
+
+
+
+</div>
 </ul>
 
 <!--------------------Game-------------------->
@@ -1359,8 +1613,77 @@ function filterExecutors() {
 
 document.getElementById("searchInput").addEventListener("input", filterExecutors);
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.executor-item').forEach(item => {
+    const percentText = item.querySelector('.executor-percent')?.innerText.replace('%', '');
+    const percent = parseInt(percentText);
+    const tag = item.querySelector('.executor-tag');
+    const percentDiv = item.querySelector('.executor-percent');
+    const bar = item.querySelector('.executor-bar-fill');
+
+    console.log(`[DEBUG] %: ${percent}, Item:`, item); // ✅ ดูว่า script ทำงานมั้ย
+
+    if (!tag || !percentDiv || !bar) {
+      console.warn("ไม่เจอ element ที่ควรจะมี");
+      return;
+    }
+
+    tag.classList.remove('low', 'medium', 'high');
+    percentDiv.classList.remove('low', 'medium', 'high');
+    bar.classList.remove('low', 'medium', 'high');
+
+    if (percent <= 40) {
+      tag.classList.add('low');
+      percentDiv.classList.add('low');
+      bar.classList.add('low');
+      tag.textContent = 'Low';
+    } else if (percent <= 70) {
+      tag.classList.add('medium');
+      percentDiv.classList.add('medium');
+      bar.classList.add('medium');
+      tag.textContent = 'Medium';
+    } else {
+      tag.classList.add('high');
+      percentDiv.classList.add('high');
+      bar.classList.add('high');
+      tag.textContent = 'High';
+    }
+  });
+});
 
 document.getElementById("searchInput").addEventListener("input", filterGames);
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.executor-item').forEach(item => {
+    const percentText = item.querySelector('.executor-percent')?.innerText.replace('%', '');
+    const percent = parseInt(percentText);
+    const tag = item.querySelector('.executor-tag');
+    const percentDiv = item.querySelector('.executor-percent');
+    const bar = item.querySelector('.executor-bar-fill');
+
+    // ล้าง class เดิม
+    tag.classList.remove('low', 'medium', 'high');
+    percentDiv.classList.remove('low', 'medium', 'high');
+    bar.classList.remove('low', 'medium', 'high');
+
+    // ใส่ใหม่ตามเปอร์เซ็นต์
+    if (percent <= 40) {
+      tag.classList.add('low');
+      percentDiv.classList.add('low');
+      bar.classList.add('low');
+      tag.textContent = 'Low';
+    } else if (percent <= 70) {
+      tag.classList.add('medium');
+      percentDiv.classList.add('medium');
+      bar.classList.add('medium');
+      tag.textContent = 'Medium';
+    } else {
+      tag.classList.add('high');
+      percentDiv.classList.add('high');
+      bar.classList.add('high');
+      tag.textContent = 'High';
+    }
+  });
+});
 
 </script>
 
