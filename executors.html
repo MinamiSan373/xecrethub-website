@@ -399,6 +399,7 @@ backdrop-filter: blur(20px);
 }
 
 .executor-item {
+   display: block;  /* 💡 เพื่อให้ display = block ตอนแสดง/ซ่อน */
   padding: 20px 28px;
   font-size: 1.1rem;
   background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
@@ -1340,18 +1341,24 @@ const robuxUrl = selectedCard.getAttribute(
     `Currently supporting ${executorItems.length} executors`;
 });
 
-  function filterGames() {
+function filterExecutors() {
   const input = document.getElementById("searchInput").value.toLowerCase();
-  const games = document.querySelectorAll(".game-item");
+  const executors = document.querySelectorAll(".executor-item");
 
-  games.forEach(game => {
-    const text = game.innerText.toLowerCase();
-    game.style.display = text.includes(input) ? "block" : "none";
+  let visibleCount = 0;
+
+  executors.forEach(executor => {
+    const text = executor.innerText.toLowerCase();
+    const isMatch = text.includes(input);
+    executor.style.display = isMatch ? "block" : "none";
+    if (isMatch) visibleCount++;
   });
 
-  const visibleCount = [...games].filter(game => game.style.display !== "none").length;
-  document.getElementById("gameCount").textContent = `Currently supporting ${visibleCount} games`;
+  document.getElementById("gameCount").textContent = `Currently supporting ${visibleCount} executors`;
 }
+
+document.getElementById("searchInput").addEventListener("input", filterExecutors);
+
 
 document.getElementById("searchInput").addEventListener("input", filterGames);
 
