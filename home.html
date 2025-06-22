@@ -309,6 +309,45 @@ backdrop-filter: blur(20px);
   font-weight: 900;
   margin-bottom: 12px;
 }
+.dev-tags {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.dev-tag {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  padding: 10px 20px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  backdrop-filter: blur(8px);
+  transition: background 0.3s ease;
+}
+
+.dev-tag i {
+  font-size: 1.2rem;
+   color: #5e6eff; 
+}
+
+.dev-tag ic {
+  font-size: 1.2rem;
+   color: #fffb02; 
+}
+
+
+.dev-tag iy {
+  font-size: 1.1rem;
+  color: #ff0000; 
+}
 
 .hero-container p {
   font-size: 1.2rem;
@@ -385,7 +424,10 @@ backdrop-filter: blur(20px);
   color: white;
   box-shadow: 0 6px 24px rgba(0,0,0,0.2);
 }
-
+.review-box.fade {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
 .feature-box i {
   font-size: 2rem;
   margin-bottom: 12px;
@@ -462,6 +504,24 @@ backdrop-filter: blur(20px);
 }
 .hero-section {
   padding-bottom: 40px; /* ลดจากเดิม เช่น 100px */
+}
+.review-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.review-box {
+  width: 300px; /* ให้ขนาดไม่ใหญ่เกินไป */
+  position: relative;
+  padding: 40px 30px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+  margin-top: 60px;
 }
 
 .why-section {
@@ -893,6 +953,76 @@ a:hover {
   color: white;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
 }
+.review-spotlight {
+  text-align: center;
+  margin: 100px auto 80px;
+  padding: 0 20px;
+  color: white;
+}
+
+.review-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 50px;
+  margin-top: 60px;
+}
+
+.review-subtitle {
+  color: #aaa;
+  font-size: 1rem;
+  margin-bottom: 40px;
+}
+
+.review-box {
+  position: relative;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05), rgba(255,255,255,0));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 40px 30px 30px;
+  max-width: 700px;
+  margin: 0 auto;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+}
+
+.review-avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.review-content {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.review-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+.review-name {
+  font-weight: 700;
+}
+
+.review-tag {
+  background: rgba(255,255,255,0.08);
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
 
 .close-btn {
   margin-top: 25px;
@@ -912,6 +1042,35 @@ a:hover {
   z-index: -1;
   pointer-events: none;
 }
+.fade-out {
+  animation: fadeSlideOut 0.6s ease forwards;
+}
+.fade-in {
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+@keyframes fadeSlideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+}
+
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
   </style>
 </head>
 <canvas id="blur-canvas"></canvas>
@@ -1041,14 +1200,59 @@ a:hover {
   </div>
 </section>
 
-<!-- About You -->
-<section class="about-section">
-  <h2>About the Developer</h2>
- <img src="https://i.ibb.co/JW063ySp/9db84df8dfd9654d745597bf53ac6737.jpg" alt="Natsu Profile" class="rounded-image">
-  <p class="about-text">
-  Hi, my name is Natsu. I'm a Xecret Hub developer with a passion for coding and programming and I want to provide the best experience for everyone.
-  </p>
+
+<section class="review-spotlight">
+  <h2 class="review-title">Reviews</h2>
+<div id="reviewContainer" class="review-grid">
+  <div class="review-box box1">
+    <img id="avatar1" class="review-avatar">
+    <p id="content1" class="review-content"></p>
+    <div class="review-meta">
+      <span id="name1" class="review-name"></span>
+      <span id="tag1" class="review-tag"></span>
+    </div>
+  </div>
+  <div class="review-box box2">
+    <img id="avatar2" class="review-avatar">
+    <p id="content2" class="review-content"></p>
+    <div class="review-meta">
+      <span id="name2" class="review-name"></span>
+      <span id="tag2" class="review-tag"></span>
+    </div>
+  </div>
+</div>
+
+</div>
+
 </section>
+
+
+<section class="about-section">
+  <h2>About the Founder</h2>
+ <img src="https://i.postimg.cc/KjQY2S41/fc9988306c9757b513ec6746327217b0.jpg" alt="Natsu Profile" class="rounded-image">
+  <p class="about-text">
+  Hi, my name is Natsu. I'm a Xecret Hub founder with a passion for coding and programming and I want to provide the best experience for everyone.
+  </p>
+  
+<div class="dev-tags">
+  <div class="dev-tag">
+    <i class="fab fa-discord"></i>
+    <span>@minamijan</span>
+  </div>
+
+<div class="dev-tag">
+  <iy class="fab fa-youtube"></iy>
+  <span>@XecretHub</span>
+</div>
+
+  <div class="dev-tag">
+    <ic class="fas fa-code"></ic>
+    <span>Code</span>
+  </div>
+
+
+</section>
+
 
 
 
@@ -1273,6 +1477,83 @@ const robuxUrl = selectedCard.getAttribute(
       alert('No payment URL found for this method.');
     }
   });
+</script>
+<script>
+const reviewData = [
+  {
+    avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6WLAd8RFfxvY1-bNTwp3PDvzb6IaWtbopCA&s",
+    content: "kitty review: very squishy 9/10",
+    name: "Kenny",
+    tag: "Moderator"
+  },
+  {
+    avatar: "https://media.online-station.net/images/2023/09/2b839d992e6229fcfb41a437c0593620.webp",
+    content: "Xecret Hub is just soo good, man every time I run it, the game feels completely different  like a whole new experience. No idea why people always get mad and say I’m using some ‘hack’ or whatever, I don’t even know what that mean 😭🤞 10/10 ngl",
+    name: "Abacaxi",
+    tag: "Admin"
+  },
+  {
+    avatar: "https://static.wikia.nocookie.net/shingekinokyojin/images/6/6d/Eren_Yeager_%28Lost_Girls%29_character_image.png/revision/latest?cb=20180216010615",
+    content: "8/10 easy to use  for spinning and good legit func . boring ui i want the old one 🙏",
+    name: "Fast",
+    tag: "Owner"
+  },
+   {
+    avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREIPlksczfJOrmNWJzbLIfVl-5u-Ry3cy_BjR1KITEW_zWFvXAVdfDn1KBQb7AUaZoX_U&usqp=CAU",
+    content: "Im a dev of other script and yes i can tell, this script is fire",
+    name: "Sushi",
+    tag: "Staff"
+  },
+  {
+    avatar: "https://i.pinimg.com/736x/06/7a/6e/067a6ee5f07b236ba7dcf86e514a0044.jpg",
+    content: "😨😍😍😍🙏🙏  best zheet on wirld!!!",
+    name: "Overdose",
+    tag: "Code"
+  },
+  {
+    avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPNnl43ecxvVRc6vpVwlRKwwzBWl2ALAlGCA&s",
+    content: "w script the best cuz i got 1 0 0",
+    name: "cattV2",
+    tag: "Moderator"
+  },
+];
+let reviewIndex = 0;
+
+function updateReview() {
+  const box1 = document.querySelector('.box1');
+  const box2 = document.querySelector('.box2');
+
+  box1.classList.remove('fade-in');
+  box2.classList.remove('fade-in');
+  box1.classList.add('fade-out');
+  box2.classList.add('fade-out');
+
+  setTimeout(() => {
+    const r1 = reviewData[reviewIndex % reviewData.length];
+    const r2 = reviewData[(reviewIndex + 1) % reviewData.length];
+
+    document.getElementById("avatar1").src = r1.avatar;
+    document.getElementById("content1").textContent = r1.content;
+    document.getElementById("name1").textContent = r1.name;
+    document.getElementById("tag1").textContent = r1.tag;
+
+    document.getElementById("avatar2").src = r2.avatar;
+    document.getElementById("content2").textContent = r2.content;
+    document.getElementById("name2").textContent = r2.name;
+    document.getElementById("tag2").textContent = r2.tag;
+
+    box1.classList.remove('fade-out');
+    box2.classList.remove('fade-out');
+    box1.classList.add('fade-in');
+    box2.classList.add('fade-in');
+
+    reviewIndex = (reviewIndex + 2) % reviewData.length;
+  }, 600);
+}
+
+updateReview();
+setInterval(updateReview, 5000);
+
 </script>
 
  <footer>
