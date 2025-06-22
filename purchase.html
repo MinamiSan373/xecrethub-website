@@ -1,14 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Purchase - Xecret Hub</title>
+  <title>Xecret Hub</title>
 
-  <meta property="og:title" content="Xecret Hub Purchase" />
-  <meta property="og:description" content="Purchase here." />
-  <meta property="og:url" content="https://xecrethub.com/purchase" />
-
+  <meta property="og:title" content="Xecret Hub" />
+  <meta property="og:description" content="Xecret Hub is a premium script that has been meticulously developed for players who want a higher level of experience, not just the basics, but a different experience. Supports over 20 popular games with daily updates to ensure you never miss any new updates." />
+  <meta property="og:url" content="https://xecrethub.com" />
   <link rel="icon" type="image/png" href="https://i.postimg.cc/nr8T32Gg/Icon-512-removebg-preview.png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -40,16 +40,21 @@
       gap: 20px; 
     }
     .plan {
-      background-color: #111;
-      border-radius: 16px;
-      padding: 30px 25px;
-      width: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease;
-      user-select: none;
-    }
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px 25px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+  user-select: none;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
     .plan:hover {
       transform: scale(1.05);
     }
@@ -68,24 +73,35 @@
       user-select: none;
     }
     label.payment-option {
-      background-color: #222;
-      padding: 15px 20px;
-      border-radius: 12px;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #eee;
-      cursor: pointer;
-      transition: background-color 0.25s ease, color 0.25s ease;
-      user-select: none;
-      gap: 15px;
-    }
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.01)
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #eee;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  gap: 15px;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05), 0 0 10px rgba(0,0,0,0.25);
+}
+
     label.payment-option:hover {
-      background-color: #ffffff;
-      color: #000;
-    }
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.15), 0 0 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
     label.payment-option input[type="radio"] {
       margin-right: 10px;
       cursor: pointer;
@@ -125,14 +141,7 @@
       padding: 30px;
       border-radius: 16px;
     }
-    footer {
-      width: 100%;
-      margin-top: 60px;
-      font-size: 0.9rem;
-      color: #555;
-      user-select: none;
-      text-align: center;
-    }
+ 
     #modal {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -167,37 +176,284 @@
     #modalContent button:hover {
       background: #ffffff;
     }
-    .hamburger {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      z-index: 10001;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+footer {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: transparent;
+  font-size: 0.9rem;
+  user-select: none;
+}
 
-    .hamburger div {
-      background-color: white;
-      height: 4px;
-      border-radius: 2px;
-      transition: all 0.3s ease;
-    }
 
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
+.main-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+background: rgba(0, 0, 0, 0.3);
+backdrop-filter: blur(20px);
 
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
+  -webkit-backdrop-filter: blur(12px);      /* รองรับ Safari */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);    /* เงาให้ดูลอย */
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10000;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
 
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
+.price span {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+
+.navbar-center {
+  display: flex;
+  gap: 24px;
+}
+
+.navbar-center a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar-center a:hover {
+  color: white;
+}
+
+.navbar-right {
+  display: flex;
+  gap: 12px;
+  padding-right: 100px;   
+}
+
+.btn-login, .btn-buy {
+  padding: 6px 14px;           
+  font-size: 0.9rem;          
+  border-radius: 6px;        
+}
+
+.btn-login {
+  background: transparent;
+  color: white;
+  border: 1px solid #555;
+  text-decoration: none; /* ลบเส้นใต้ */
+}
+
+.btn-buy {
+  background: white;
+  color: black;
+  text-decoration: none; /* ลบเส้นใต้ */
+}
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.brand-title {
+  font-size: 1.6rem;        /* ขนาดใหญ่ขึ้น */
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.btn-login:hover {
+  background: #222;
+}
+.btn-buy:hover {
+  background: #ddd;
+}
+
+
+    .how-to-toggle {
+  margin-top: 60px;
+  text-align: center;
+}
+
+#toggleHowToBtn {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#toggleHowToBtn:hover {
+  background: linear-gradient(90deg, #feb47b, #ff7e5f);
+}
+.purchase-guide {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 24px 28px;
+  max-width: 680px;
+  width: 100%;
+  margin: 40px auto;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+  color: #eee;
+}
+.payment-modal {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Poppins', sans-serif;
+}
+
+.payment-modal-content {
+  background: #111;
+  border-radius: 12px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 420px;
+  color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.modal-header p {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-top: 6px;
+  margin-bottom: 20px;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.payment-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 14px 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+ gap: 16px;
+  cursor: pointer;
+   margin-bottom: 16px;
+  transition: background 0.3s, border 0.3s;
+}
+
+.payment-card:hover {
+  background: #222;
+  border-color: #555;
+}
+
+.payment-card i {
+  font-size: 1.4rem;
+  color: #00ffd0;
+}
+
+.payment-card p {
+  margin: 2px 0 0;
+  color: #bbb;
+  font-size: 0.9rem;
+}
+
+.proceed-btn {
+  margin-top: 25px;
+  width: 100%;
+  background: white;
+  color: black;
+  border: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.proceed-btn:hover {
+  background: #e4e4e4;
+}
+
+
+.purchase-guide h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: white;
+}
+.payment-card.selected {
+  border-color: #00ffd0;
+  background: #222;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+.step-number {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.bottom-footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  padding: 10px 16px;
+  border-radius: 12px;
+  display: flex;
+  gap: 16px;
+  z-index: 9999;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.bottom-footer a {
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.2s;
+}
+
+.bottom-footer a:hover {
+  color: #ff9100;
+}
+
 .animated-background {
   position: fixed;
   top: 0; left: 0;
@@ -229,6 +485,13 @@
   animation-delay: 5s;
 }
 
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+
 .circle3 {
   background: #ff8800;
   width: 300px; height: 300px;
@@ -240,43 +503,301 @@
   0%   { transform: translate(0px, 0px) scale(1); }
   100% { transform: translate(-100px, 100px) scale(1.2); }
 }
+a {
+  color: #ff9100;
+}
 
-    .menu-dropdown {
-      position: fixed;
-      top: 60px;
-      right: 20px;
-      background-color: #111;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-      display: none;
-      flex-direction: column;
-      min-width: 160px;
-      z-index: 10000;
-      user-select: none;
-    }
+a:hover {
+  color: #ff9100;
+}
 
-    .menu-dropdown a {
-      color: white;
-      padding: 12px 20px;
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: background-color 0.3s ease;
-    }
+.btn-rounded-gradient {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+.btn-rounded-gradient:hover {
+  background: linear-gradient(90deg, #feb47b, #ff7e5f);
+}
+.pricing-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 60px;
+}
 
-    .menu-dropdown a:last-child {
-      border-bottom: none;
-    }
+.pricing-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0));
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 30px 30px;
+  width: 340px;
+  color: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease;
+}
 
-    .menu-dropdown a:hover {
-      background-color: #fff;
-      color: #000;
-      cursor: pointer;
-    }
+.pricing-card:hover {
+  transform: scale(1.02);
+}
 
-    .menu-dropdown.show {
-      display: flex;
-    }
+.badge {
+  background: #ff9100;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.best-value .badge {
+  background: #6f42c1;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.price span {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.features i {
+  color: #00ffcc;
+}
+
+.purchase-btn {
+  background: #fff;
+  color: #000;
+  font-weight: bold;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.purchase-btn:hover {
+  background: #eaeaea;
+}
+
+.methods p {
+  font-size: 0.9rem;
+  color: #bbb;
+  margin-bottom: 8px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tags span {
+  background: rgba(255,255,255,0.08);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #fff;
+}
+
+.purchase-steps {
+  margin-top: 40px;
+  font-size: 1.05rem;
+  color: #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.step-number {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;  /* ทำให้เลขอยู่ตรงกลางพอดี */
+  text-align: center;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+   .icon-button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-button:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+/* แสดง hamburger เมื่อหน้าจอเล็ก */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 25px;
+  background: white;
+  border-radius: 2px;
+}
+
+/* ซ่อนเมนูปกติในมือถือ */
+@media (max-width: 768px) {
+  .navbar-center {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.95);
+    width: 100%;
+    padding: 20px;
+    z-index: 1000;
+  }
+
+  .navbar-center.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .navbar-right {
+    padding-right: 0;
+  }
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #111;
+  color: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+}
+.close-x {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  z-index: 10001;
+}
+
+.close-x:hover {
+  color: #fff;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.payment-btn {
+  background: #222;
+  border: 1px solid #444;
+  padding: 12px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.3s;
+}
+
+.payment-btn:hover {
+  background: #333;
+}
+.payment-modal-content {
+  position: relative; /* 👈 สำคัญ */
+  background: #111;
+  border-radius: 12px;
+  padding: 30px 25px;
+  width: 100%;
+  max-width: 420px;
+  color: white;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.close-btn {
+  margin-top: 25px;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+}
     #blur-canvas {
   position: fixed;
   top: 0; left: 0;
@@ -294,158 +815,183 @@
   <div class="animated-circle circle3"></div>
 </div>
 
-<body>
+<body> 
+<div class="payment-modal" id="paymentModal" style="display: none;">
+
+  <div class="payment-modal-content">
+    <button class="close-x" onclick="closeModal()">
+  <i class="fas fa-times"></i>
+</button>
+
+    <div class="modal-header">
+      <h2>Choose Payment Method</h2>
+      <p>Select how you would like to pay for your plan.</p>
+    </div>
+
+ <div class="payment-card" data-url="https://xecrethubth.betashift.xyz/">
+  <i class="fas fa-credit-card"></i>
+  <div>
+    <strong>True Money Wallet</strong>
+    <p>Pay with True Money Wallet</p>
+  </div>
+</div>
+
+
+    <div class="payment-card" data-url="https://www.paypal.com/paypalme/SophaLanet">
+  <i class="fab fa-paypal"></i>
+  <div>
+    <strong>PayPal</strong>
+    <p>The safest and best payment</p>
+  </div>
+</div>
+
+
+<div class="payment-card" 
+     data-robux-monthly="https://www.roblox.com/catalog/93578935960753/Monthly"
+     data-robux-lifetime="https://www.roblox.com/catalog/77370347806343/Lifetime">
+  <i class="fas fa-gift"></i>
+  <div>
+    <strong>Robux</strong>
+    <p>1,000 For Monthly / 2,000 For Lifetime</p>
+  </div>
+</div>
+
+
+
+    <button class="proceed-btn">Proceed to Payment</button>
+  </div>
+</div>
+
 
 <div id="music-player" style="display: none;"></div>
 
-<div class="hamburger" id="hamburger">
-    <div></div>
-    <div></div>
-    <div></div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<nav class="main-navbar">
+<div class="navbar-left">
+
+<div class="menu-toggle" id="menuToggle">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+
+  <div class="brand-title">Xecret <span class="highlight">Hub</span></div>
+</div>
+  <div class="navbar-center">
+    <a href="home.html"><i class="fas fa-home"></i> Home</a>
+    <a href="games.html"><i class="fas fa-dice"></i> Games</a>
+    <a href="executors.html"><i class="fas fa-terminal"></i> Executors</a>
+    <a href="https://www.youtube.com/@XecretHub/videos" target="_blank">
+  <i class="fas fa-video"></i> Showcases
+</a>
+    <a href="purchase.html"><i class="fas fa-dollar-sign"></i> Pricing</a>
+    <a href="terms.html"><i class="fas fa-scroll"></i> Terms</a>
+    <a href="https://discord.gg/xecrethub" target="_blank"><i class="fab fa-discord"></i> Discord</a>
   </div>
+  <div class="navbar-right">
+  
 
 
-<nav class="menu-dropdown" id="menuDropdown">
-  <a href="home.html">Home</a>
-  <a href="purchase.html">Purchase</a>
-  <a href="games.html">Supported Games</a>
-  <a href="executors.html">Supported Executors</a>
+<button id="musicToggleBtn" class="icon-button">
+  <i class="fas fa-volume-up"></i>
+</button>
+    <a href="purchase.html" class="btn-buy">Purchase Now</a>
+  </div>
 </nav>
 
-<h1>Purchase</h1>
-<div class="plans">
 
+<div class="pricing-container">
   <!-- Monthly Plan -->
-  <div class="plan" id="monthlyPlan">
+  <div class="pricing-card">
+    <span class="badge">MONTHLY</span>
     <h2>Monthly Access</h2>
-    <button class="purchase-btn" id="monthlyPurchaseBtn">Purchase</button>
-    <div class="payment-methods" id="monthlyMethods" style="display:none;">
-      <label class="payment-option" data-url="https://www.roblox.com/catalog/128573374313149/Monthly-Access">
-        <input type="radio" name="monthly" />
-        <img src="https://play-lh.googleusercontent.com/7cIIPlWm4m7AGqVpEsIfyL-HW4cQla4ucXnfalMft1TMIYQIlf2vqgmthlZgbNAQoaQ" alt="Robux" class="payment-image" />
-        <span>1,000 Robux</span>
-      </label>
-      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/200">
-        <input type="radio" name="monthly" />
-        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
-        <span>6$ Paypal</span>
-      </label>
-      <label class="payment-option" data-url="https://xecrethubth.betashift.xyz/">
-        <input type="radio" name="monthly" />
-        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
-        <span>6$ TrueMoney</span>
-      </label>
+    <p class="price">6$ <span>/one-time</span></p>
+<ul class="features">
+  <li><i class="fas fa-unlock-alt"></i> Basic Access to Scripts</li>
+  <li><i class="fas fa-headset"></i> Standard Support Access</li>
+  <li><i class="fas fa-sync-alt"></i> Regular Content Enhancements</li>
+</ul>
+
+</ul>
+<button class="purchase-btn" onclick="openPaymentModal('monthly')">Purchase Now</button>
+
+    <div class="methods">
+      <p>Available Payment Methods</p>
+      <div class="tags">
+        <span>Robux</span>
+        <span>PayPal</span>
+        <span>TrueMoney</span>
+      </div>
     </div>
-    <button class="purchase-now-btn" id="monthlyPurchaseNowBtn">Purchase Now</button>
+    
   </div>
 
   <!-- Lifetime Plan -->
-  <div class="plan" id="lifetimePlan">
+  <div class="pricing-card best-value">
+    <span class="badge">BEST VALUE</span>
     <h2>Lifetime Access</h2>
-    <button class="purchase-btn" id="lifetimePurchaseBtn">Purchase</button>
-    <div class="payment-methods" id="lifetimeMethods" style="display:none;">
-      <label class="payment-option" data-url="https://www.roblox.com/catalog/81250991261428/Lifetime-Access">
-        <input type="radio" name="lifetime" />
-        <img src="https://play-lh.googleusercontent.com/7cIIPlWm4m7AGqVpEsIfyL-HW4cQla4ucXnfalMft1TMIYQIlf2vqgmthlZgbNAQoaQ" alt="Robux" class="payment-image" />
-        <span>2,000 Robux</span>
-      </label>
-      <label class="payment-option" data-url="https://www.paypal.me/SophaLanet/350">
-        <input type="radio" name="lifetime" />
-        <img src="https://www.leceipt.com/wp-content/uploads/2022/05/paypal-logo.png" alt="Paypal" class="payment-image" />
-        <span>11$ Paypal</span>
-      </label>
-      <label class="payment-option" data-url="https://xecrethubth.betashift.xyz/">
-        <input type="radio" name="lifetime" />
-        <img src="https://play-lh.googleusercontent.com/6I2IYbIg4rhGUgs0UxP_5q6wmJmlBjBrlQ9f0_FAN94yOzwmrtEteifCdPPd1-chY_NX" alt="TrueMoney" class="payment-image" />
-        <span>11$ TrueMoney</span>
-      </label>
+    <p class="price">11$ <span>/one-time</span></p>
+   <ul class="features">
+  <li><i class="fas fa-infinity"></i> Unlimited Lifetime Access</li>
+  <li><i class="fas fa-bolt"></i> Priority Queue Support</li>
+  <li><i class="fas fa-gift"></i> All Future Features & Bonuses</li>
+</ul>
+
+<button class="purchase-btn" onclick="openPaymentModal('lifetime')">Purchase Now</button>
+
+    <div class="methods">
+      <p>Available Payment Methods</p>
+      <div class="tags">
+        <span>Robux</span>
+        <span>PayPal</span>
+        <span>TrueMoney</span>
+      </div>
     </div>
-    <button class="purchase-now-btn" id="lifetimePurchaseNowBtn">Purchase Now</button>
   </div>
-
-</div> 
-
-<!-- How to Purchase -->
-<div class="how-to">
-  <h2>How to Purchase</h2>
-<p>• Click on <strong>Purchase</strong> next to the plan you wish to select.</p>
-<p>• Choose your preferred payment method from the available options.</p>
-<p>• Once you've selected your payment method, click <strong>Purchase Now</strong> to proceed to the payment page.</p>
-<p>• After payment is complete, contact the admin and send proof with your name.</p>
-<p>• All purchases are final and non-refundable. Once payment has been processed, no refunds will be issued under any circumstances.</p>
 </div>
 
+
+<div class="purchase-guide">
+  <h2>How to Purchase</h2>
+  <div class="step">
+    <span class="step-number">1</span>
+    <span>Choose your preferred plan and click <strong>"Purchase Now"</strong></span>
+  </div>
+  <div class="step">
+    <span class="step-number">2</span>
+    <span>Select your payment method (in the available payment methods)</span>
+  </div>
+  <div class="step">
+    <span class="step-number">3</span>
+    <span>Complete the payment process through our checkout</span>
+  </div>
+  <div class="step">
+    <span class="step-number">4</span>
+    <span>Go to <a href="https://discord.com/channels/..." target="_blank">support</a> and send proof with your name</span>
+  </div>
+</div>
+
+
+
 <!-- Footer -->
-<footer>
-  &copy; 2025 Xecret Hub - Purchase.
-</footer>
+
 
 <!-- Modal -->
 <div id="modal">
   <div id="modalContent">
     <div id="modalMessage"></div>
     <button onclick="closeModal()">OK</button>
+    
   </div>
 </div>
 
 <!-- JavaScript -->
-<script>
-   const hamburger = document.getElementById('hamburger')
-  const menuDropdown = document.getElementById('menuDropdown')
-  function isLoggedIn() {
-    return !!localStorage.getItem('loggedInUser');
-  }
-  function showModal(message) {
-    document.getElementById('modalMessage').textContent = message;
-    document.getElementById('modal').style.display = 'flex';
-  }
-  function closeModal() {
-    document.getElementById('modal').style.display = 'none';
-  }
-   hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active')
-    menuDropdown.classList.toggle('show')
-  })
 
-  document.addEventListener('click', e => {
-    if (!hamburger.contains(e.target) && !menuDropdown.contains(e.target)) {
-      hamburger.classList.remove('active')
-      menuDropdown.classList.remove('show')
-    }
-  })
-  function setupPlan(planId, purchaseBtnId, methodsId, purchaseNowBtnId, radioName) {
-    const purchaseBtn = document.getElementById(purchaseBtnId);
-    const methodsDiv = document.getElementById(methodsId);
-    const purchaseNowBtn = document.getElementById(purchaseNowBtnId);
-    let selectedUrl = null;
-    purchaseBtn.addEventListener('click', () => {
-      methodsDiv.style.display = 'flex';
-      purchaseBtn.style.display = 'none';
-    });
-    const radios = methodsDiv.querySelectorAll(`input[name="${radioName}"]`);
-    radios.forEach(radio => {
-      radio.addEventListener('change', () => {
-        const label = radio.closest('label');
-        selectedUrl = label.getAttribute('data-url');
-        purchaseNowBtn.style.display = 'inline-block';
-      });
-    });
-    purchaseNowBtn.addEventListener('click', () => {
-      if (!isLoggedIn()) {
-        showModal('You are not logged in yet.');
-        return;
-      }
-      if (!selectedUrl) {
-        showModal('Please select a payment method before proceeding.');
-        return;
-      }
-      window.open(selectedUrl, '_blank');
-    });
-  }
-  setupPlan('monthlyPlan', 'monthlyPurchaseBtn', 'monthlyMethods', 'monthlyPurchaseNowBtn', 'monthly');
-  setupPlan('lifetimePlan', 'lifetimePurchaseBtn', 'lifetimeMethods', 'lifetimePurchaseNowBtn', 'lifetime');
-</script>
 <script>
+  
 const blurCanvas = document.getElementById('blur-canvas');
 const ctx = blurCanvas.getContext('2d');
 
@@ -485,25 +1031,27 @@ drawBlur();
   let player;
   let unmuted = false;
 
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('music-player', {
-      height: '0',
-      width: '0',
-      videoId: 'ZGS8WAxwh98', 
-      playerVars: {
-        autoplay: 1,
-        loop: 1,
-        playlist: 'ZGS8WAxwh98',
-        controls: 0,
-        mute: 1
-      },
-      events: {
-        onReady: (event) => {
-          event.target.playVideo();
-        }
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('music-player', {
+    height: '0',
+    width: '0',
+    videoId: 'ZGS8WAxwh98',
+    playerVars: {
+      autoplay: 0,       // ✅ ไม่ให้เล่นอัตโนมัติ
+      loop: 1,
+      playlist: 'ZGS8WAxwh98',
+      controls: 0,
+      mute: 1
+    },
+    events: {
+      onReady: () => {
+        // อย่าเล่นทันที!
+        // ไม่ต้องมีอะไรตรงนี้
       }
-    });
-  }
+    }
+  });
+}
+
 
   document.addEventListener('click', () => {
     if (player && !unmuted) {
@@ -512,6 +1060,157 @@ drawBlur();
     }
   }, { once: true });
 </script>
+<script>
+  const clickSound = new Audio('https://www.fesliyanstudios.com/play-mp3/387');
+  clickSound.volume = 0.5;
+  document.addEventListener('mousedown', (e) => {
+    if (e.button === 0) {
+      clickSound.currentTime = 0;
+      clickSound.play().catch(() => {});
+    }
+  });
+</script>
+<script>
+  const toggleBtn = document.getElementById('toggleHowToBtn');
+  const howToBox = document.getElementById('howToBox');
+
+  toggleBtn.addEventListener('click', () => {
+    const isVisible = howToBox.style.display === 'block';
+    howToBox.style.display = isVisible ? 'none' : 'block';
+    toggleBtn.textContent = isVisible ? 'How to Purchase' : 'Close';
+  });
+</script>
+
+<script>
+const musicBtn = document.getElementById("musicToggleBtn");
+let isMuted = true;
+let hasStarted = false;
+
+function updateMusicIcon() {
+  musicBtn.innerHTML = isMuted
+    ? '<i class="fas fa-volume-mute"></i>'
+    : '<i class="fas fa-volume-up"></i>';
+}
+
+musicBtn.addEventListener("click", () => {
+  if (player) {
+    if (!hasStarted) {
+      player.unMute();
+      player.playVideo(); // เริ่มเล่นตอนกดครั้งแรก
+      hasStarted = true;
+      isMuted = false;
+    } else {
+      if (isMuted) {
+        player.unMute();
+        player.playVideo();
+      } else {
+        player.pauseVideo(); // หยุดเพลง
+      }
+      isMuted = !isMuted;
+    }
+    updateMusicIcon();
+  }
+});
+  // ปรับ icon ตอนโหลด
+  updateMusicIcon();
+</script>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navbarCenter = document.querySelector('.navbar-center');
+
+  menuToggle.addEventListener('click', () => {
+    navbarCenter.classList.toggle('show');
+  });
+</script>
+<script>
+  function openPaymentModal() {
+    document.getElementById('paymentModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('paymentModal').style.display = 'none';
+  }
+
+  // กดที่ปุ่มจ่าย = ไปยัง URL
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.payment-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const url = btn.getAttribute('data-url');
+        if (url) window.open(url, '_blank');
+      });
+    });
+  });
+</script>
+<script>
+  let selectedPlan = null; // 'monthly' หรือ 'lifetime'
+  let selectedCard = null;
+
+  function openPaymentModal(plan) {
+    selectedPlan = plan;
+    selectedCard = null;
+    document.getElementById('paymentModal').style.display = 'flex';
+
+    // เอา selected ออกจากทุกการ์ด
+    document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
+  }
+
+  function closeModal() {
+    document.getElementById('paymentModal').style.display = 'none';
+  }
+
+  // เวลาเลือกการ์ด
+  document.querySelectorAll('.payment-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedCard = card;
+    });
+  });
+
+  // เวลา Click ปุ่ม Proceed
+  document.querySelector('.proceed-btn').addEventListener('click', () => {
+    if (!selectedCard) {
+      alert('Please select a payment method first!');
+      return;
+    }
+
+    const isRobux = selectedCard.querySelector('strong')?.textContent?.includes('Robux');
+ if (isRobux) {
+const robuxUrl = selectedCard.getAttribute(
+  selectedPlan === 'monthly' ? 'data-robux-monthly' : 'data-robux-lifetime'
+);
+
+  if (robuxUrl) {
+    window.open(robuxUrl, '_blank');
+  } else {
+    alert('No Robux URL found for this plan.');
+  }
+  return;
+}
+
+    // สำหรับ PayPal / TrueMoney
+    const url = selectedCard.getAttribute('data-url');
+    if (url) {
+      window.open(url, '_blank');
+    } else {
+      alert('No payment URL found for this method.');
+    }
+  });
+</script>
+
+ <footer>
+   © 2025 Xecret Hub. All rights reserved.
+  </footer>
+  <div class="bottom-footer">
+  <a href="home.html"><i class="fas fa-home"></i></a>
+  <a href="games.html"><i class="fas fa-dice"></i></a>
+  <a href="executors.html"><i class="fas fa-terminal"></i></a>
+  <a href="https://www.youtube.com/@XecretHub/videos" target="_blank"><i class="fas fa-video"></i></a>
+  <a href="purchase.html"><i class="fas fa-dollar-sign"></i></a>
+  <a href="terms.html"><i class="fas fa-scroll"></i></a>
+  <a href="https://discord.gg/xecrethub" target="_blank"><i class="fab fa-discord"></i></a>
+</div>
 
 </body>
 </html>
