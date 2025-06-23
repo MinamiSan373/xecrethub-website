@@ -511,6 +511,9 @@ backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.08);
   box-shadow: 0 8px 40px rgba(0,0,0,0.3);
   margin-top: 60px;
+   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .why-section {
@@ -1010,6 +1013,7 @@ a:hover {
   align-items: center;
   gap: 12px;
   font-size: 0.95rem;
+   margin-top: auto;
   color: #ccc;
 }
 
@@ -1200,31 +1204,11 @@ a:hover {
   </div>
 </section>
 
-
 <section class="review-spotlight">
   <h2 class="review-title">Reviews</h2>
-<div id="reviewContainer" class="review-grid">
-  <div class="review-box box1">
-    <img id="avatar1" class="review-avatar">
-    <p id="content1" class="review-content"></p>
-    <div class="review-meta">
-      <span id="name1" class="review-name"></span>
-      <span id="tag1" class="review-tag"></span>
-    </div>
-  </div>
-  <div class="review-box box2">
-    <img id="avatar2" class="review-avatar">
-    <p id="content2" class="review-content"></p>
-    <div class="review-meta">
-      <span id="name2" class="review-name"></span>
-      <span id="tag2" class="review-tag"></span>
-    </div>
-  </div>
-</div>
-
-</div>
-
+  <div id="reviewContainer" class="review-grid"></div>
 </section>
+
 
 
 <section class="about-section">
@@ -1376,7 +1360,7 @@ musicBtn.addEventListener("click", () => {
   if (player) {
     if (!hasStarted) {
       player.unMute();
-      player.playVideo(); // เริ่มเล่นตอนกดครั้งแรก
+      player.playVideo(); 
       hasStarted = true;
       isMuted = false;
     } else {
@@ -1384,14 +1368,14 @@ musicBtn.addEventListener("click", () => {
         player.unMute();
         player.playVideo();
       } else {
-        player.pauseVideo(); // หยุดเพลง
+        player.pauseVideo(); 
       }
       isMuted = !isMuted;
     }
     updateMusicIcon();
   }
 });
-  // ปรับ icon ตอนโหลด
+  
   updateMusicIcon();
 </script>
 
@@ -1412,7 +1396,6 @@ musicBtn.addEventListener("click", () => {
     document.getElementById('paymentModal').style.display = 'none';
   }
 
-  // กดที่ปุ่มจ่าย = ไปยัง URL
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.payment-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1423,7 +1406,7 @@ musicBtn.addEventListener("click", () => {
   });
 </script>
 <script>
-  let selectedPlan = null; // 'monthly' หรือ 'lifetime'
+  let selectedPlan = null; 
   let selectedCard = null;
 
   function openPaymentModal(plan) {
@@ -1431,7 +1414,6 @@ musicBtn.addEventListener("click", () => {
     selectedCard = null;
     document.getElementById('paymentModal').style.display = 'flex';
 
-    // เอา selected ออกจากทุกการ์ด
     document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
   }
 
@@ -1439,7 +1421,6 @@ musicBtn.addEventListener("click", () => {
     document.getElementById('paymentModal').style.display = 'none';
   }
 
-  // เวลาเลือกการ์ด
   document.querySelectorAll('.payment-card').forEach(card => {
     card.addEventListener('click', () => {
       document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
@@ -1469,7 +1450,6 @@ const robuxUrl = selectedCard.getAttribute(
   return;
 }
 
-    // สำหรับ PayPal / TrueMoney
     const url = selectedCard.getAttribute('data-url');
     if (url) {
       window.open(url, '_blank');
@@ -1480,22 +1460,18 @@ const robuxUrl = selectedCard.getAttribute(
 </script>
 <script>
 const reviewData = [
-
-    {
+  {
     avatar: "https://pbs.twimg.com/media/EzjVfgaWQAEPSXp.jpg",
-    content: "8/10 easy to use  for spinning and good legit func . boring ui i want the old one 🙏",
+    content: "8/10 easy to use for spinning and good legit func.",
     name: "Fast",
     tag: "CEO"
   },
   {
     avatar: "https://media.online-station.net/images/2023/09/2b839d992e6229fcfb41a437c0593620.webp",
-    content: "Xecret Hub is just soo good, man every time I run it, the game feels completely different  like a whole new experience. No idea why people always get mad and say I’m using some ‘hack’ or whatever, I don’t even know what that mean 😭🤞 10/10 ngl",
+    content: "Xecret Hub is just soo good, man every time I run it, the game feels completely different.",
     name: "Abacaxi",
     tag: "Admin"
   },
-
-
-
   {
     avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6WLAd8RFfxvY1-bNTwp3PDvzb6IaWtbopCA&s",
     content: "kitty review: very squishy 9/10",
@@ -1508,14 +1484,11 @@ const reviewData = [
     name: "cattV2",
     tag: "Moderator"
   },
-
-
-
-     {
+  {
     avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREIPlksczfJOrmNWJzbLIfVl-5u-Ry3cy_BjR1KITEW_zWFvXAVdfDn1KBQb7AUaZoX_U&usqp=CAU",
-    content: "Im a dev of other script and yes i can tell, this script is fire",
+    content: "I'm a dev of other script and yes I can tell, this script is fire",
     name: "Sushi",
-    tag: "Developer"
+    tag: "Staff"
   },
   {
     avatar: "https://i.pinimg.com/736x/06/7a/6e/067a6ee5f07b236ba7dcf86e514a0044.jpg",
@@ -1523,10 +1496,9 @@ const reviewData = [
     name: "Overdose",
     tag: "Code"
   },
-
   {
     avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIOCvUQgij_NOytzErEToEXAQYk77WTFxGDA&s",
-    content: "The best script ever, frequent updates and op fuctions! i recommend so much",
+    content: "The best script ever, frequent updates and OP functions! I recommend so much.",
     name: "Bardoq",
     tag: "Staff"
   },
@@ -1536,8 +1508,7 @@ const reviewData = [
     name: "Oreo",
     tag: "Staff"
   },
-
-   {
+  {
     avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfAJGd1MM_Y2lxnYhQF7_o5cHLdXzHgit03A&s",
     content: "This Hub is very good even though it has some bugs. I am proud to be a Content Creator.",
     name: "Snix",
@@ -1548,45 +1519,49 @@ const reviewData = [
     content: "It's good, but the Owner hates me ☠️",
     name: "Light",
     tag: "Content Creator"
-  },
+  }
+  
 ];
-let reviewIndex = 0;
+const reviewContainer = document.getElementById("reviewContainer");
+let currentTagIndex = 0;
 
-function updateReview() {
-  const box1 = document.querySelector('.box1');
-  const box2 = document.querySelector('.box2');
+// หา tag ทั้งหมดแบบ unique
+const tags = [...new Set(reviewData.map(r => r.tag))];
 
-  box1.classList.remove('fade-in');
-  box2.classList.remove('fade-in');
-  box1.classList.add('fade-out');
-  box2.classList.add('fade-out');
+function renderTagGroup(tag) {
+  reviewContainer.classList.remove("fade-in");
+  reviewContainer.classList.add("fade-out");
 
   setTimeout(() => {
-    const r1 = reviewData[reviewIndex % reviewData.length];
-    const r2 = reviewData[(reviewIndex + 1) % reviewData.length];
+    const group = reviewData.filter(r => r.tag === tag);
+    reviewContainer.innerHTML = "";
 
-    document.getElementById("avatar1").src = r1.avatar;
-    document.getElementById("content1").textContent = r1.content;
-    document.getElementById("name1").textContent = r1.name;
-    document.getElementById("tag1").textContent = r1.tag;
+    group.forEach(r => {
+      const box = document.createElement("div");
+      box.className = "review-box";
+      box.innerHTML = `
+        <img src="${r.avatar}" class="review-avatar">
+        <p class="review-content">${r.content}</p>
+        <div class="review-meta">
+          <span class="review-name">${r.name}</span>
+          <span class="review-tag">${r.tag}</span>
+        </div>
+      `;
+      reviewContainer.appendChild(box);
+    });
 
-    document.getElementById("avatar2").src = r2.avatar;
-    document.getElementById("content2").textContent = r2.content;
-    document.getElementById("name2").textContent = r2.name;
-    document.getElementById("tag2").textContent = r2.tag;
-
-    box1.classList.remove('fade-out');
-    box2.classList.remove('fade-out');
-    box1.classList.add('fade-in');
-    box2.classList.add('fade-in');
-
-    reviewIndex = (reviewIndex + 2) % reviewData.length;
+    reviewContainer.classList.remove("fade-out");
+    reviewContainer.classList.add("fade-in");
   }, 600);
 }
 
-updateReview();
-setInterval(updateReview, 5000);
+// เริ่มต้น
+renderTagGroup(tags[currentTagIndex]);
 
+setInterval(() => {
+  currentTagIndex = (currentTagIndex + 1) % tags.length;
+  renderTagGroup(tags[currentTagIndex]);
+}, 5000);
 </script>
 
  <footer>
