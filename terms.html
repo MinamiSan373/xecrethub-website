@@ -504,20 +504,24 @@ footer {
   user-select: none;
   position: relative;
 }
+.bottom-footer-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
 
 .bottom-footer {
-  margin-top: 10px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   padding: 10px 16px;
   border-radius: 12px;
-  display: flex;
-  gap: 16px;
-  justify-content: center;  
-  flex-wrap: wrap;        
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  position: relative;      
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  max-width: fit-content;
 }
+
 .bottom-footer a {
   color: #fff;
   font-size: 1.2rem;
@@ -1286,19 +1290,20 @@ document.querySelectorAll('.accordion-header').forEach(header => {
   });
 });
 </script>
-
- <footer>
-   © 2025 Xecret Hub. All rights reserved.
-  </footer>
-  <div class="bottom-footer">
-  <a href="home.html"><i class="fas fa-home"></i></a>
-  <a href="games.html"><i class="fas fa-dice"></i></a>
-  <a href="executors.html"><i class="fas fa-terminal"></i></a>
-  <a href="https://www.youtube.com/@XecretHub/videos" target="_blank"><i class="fas fa-video"></i></a>
-  <a href="purchase.html"><i class="fas fa-dollar-sign"></i></a>
-  <a href="terms.html"><i class="fas fa-scroll"></i></a>
-  <a href="https://discord.gg/xecrethub" target="_blank"><i class="fab fa-discord"></i></a>
-</div>
+<footer>
+  © 2025 Xecret Hub. All rights reserved.
+  <div class="bottom-footer-wrapper"> 
+    <div class="bottom-footer">
+      <a href="home.html"><i class="fas fa-home"></i></a>
+      <a href="games.html"><i class="fas fa-dice"></i></a>
+      <a href="executors.html"><i class="fas fa-terminal"></i></a>
+      <a href="https://www.youtube.com/@XecretHub/videos" target="_blank"><i class="fas fa-video"></i></a>
+      <a href="purchase.html"><i class="fas fa-dollar-sign"></i></a>
+      <a href="terms.html"><i class="fas fa-scroll"></i></a>
+      <a href="https://discord.gg/xecrethub" target="_blank"><i class="fab fa-discord"></i></a>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
