@@ -150,17 +150,6 @@
     #modalContent button:hover {
       background: #ffffff;
     }
-footer {
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  padding: 0.5rem 1rem;
-  color: #fff;
-  background-color: transparent;
-  font-size: 0.9rem;
-  user-select: none;
-}
 
 
 .main-navbar {
@@ -431,7 +420,7 @@ backdrop-filter: blur(20px);
 .feature-box i {
   font-size: 2rem;
   margin-bottom: 12px;
-  color: #00ffd0;
+  color: #ffffff;
 }
 
 .about-section {
@@ -596,18 +585,29 @@ backdrop-filter: blur(20px);
   font-size: 0.85rem;
   flex-shrink: 0;
 }
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  color: #fff;
+  background-color: transparent;
+  font-size: 0.9rem;
+  user-select: none;
+  position: relative;
+}
+
 .bottom-footer {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
+  margin-top: 10px;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   padding: 10px 16px;
   border-radius: 12px;
   display: flex;
   gap: 16px;
-  z-index: 9999;
+  justify-content: center;  
+  flex-wrap: wrap;        
   box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  position: relative;      
 }
 
 .bottom-footer a {
