@@ -647,6 +647,11 @@ a:hover {
   align-items: center;
   gap: 12px;
 }
+.pricing-card.expensive-value .badge {
+  background: #e61405; 
+  color: white;
+}
+
 .step-number {
   background: rgba(255, 255, 255, 0.08);
   color: white;
@@ -654,7 +659,7 @@ a:hover {
   border-radius: 50%;
   width: 26px;
   height: 26px;
-  line-height: 26px;  /* ทำให้เลขอยู่ตรงกลางพอดี */
+  line-height: 26px;  
   text-align: center;
   font-size: 0.85rem;
   flex-shrink: 0;
@@ -676,7 +681,7 @@ a:hover {
 .icon-button:hover {
   background-color: rgba(255,255,255,0.1);
 }
-/* แสดง hamburger เมื่อหน้าจอเล็ก */
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -691,7 +696,6 @@ a:hover {
   border-radius: 2px;
 }
 
-/* ซ่อนเมนูปกติในมือถือ */
 @media (max-width: 768px) {
   .navbar-center {
     display: none;
@@ -780,7 +784,7 @@ a:hover {
   background: #333;
 }
 .payment-modal-content {
-  position: relative; /* 👈 สำคัญ */
+  position: relative;
   background: #111;
   border-radius: 12px;
   padding: 30px 25px;
@@ -849,12 +853,14 @@ a:hover {
 
 
 <div class="payment-card" 
-     data-robux-monthly="https://www.roblox.com/catalog/93578935960753/Monthly"
-     data-robux-lifetime="https://www.roblox.com/catalog/77370347806343/Lifetime">
+     data-robux-monthly="https://www.roblox.com/catalog/93578935960753/Monthly-Access"
+     data-robux-lifetime="https://www.roblox.com/catalog/77370347806343/Lifetime-Access"
+     data-robux-customer="https://www.roblox.com/catalog/122378920129275/Customer-Access">
+
   <i class="fas fa-gift"></i>
   <div>
     <strong>Robux</strong>
-    <p>1,000 For Monthly / 2,000 For Lifetime</p>
+    <p>1,000 For Monthly / 2,000 For Lifetime / 4,000 For Customer</p>
   </div>
 </div>
 
@@ -908,7 +914,7 @@ a:hover {
 <div class="pricing-container">
   <!-- Monthly Plan -->
   <div class="pricing-card">
-    <span class="badge">MONTHLY</span>
+    <span class="badge">CHEAP VALUE</span>
     <h2>Monthly Access</h2>
     <p class="price">6$ <span>/one-time</span></p>
 <ul class="features">
@@ -953,6 +959,29 @@ a:hover {
       </div>
     </div>
   </div>
+
+ <div class="pricing-card expensive-value customer-access">
+    <span class="badge">EXPENSIVE VALUE</span>
+    <h2>Customer Access</h2>
+    <p class="price">20$ <span>/one-time</span></p>
+    <ul class="features">
+<li><i class="fas fa-crown icon-premium"></i> Monthly Access</li>
+<li><i class="fas fa-wand-magic-sparkles icon-fast"></i> Custom Script Requests</li>
+<li><i class="fas fa-clock-rotate-left icon-bonus"></i> 1 Request per Day</li>
+    </ul>
+    <button class="purchase-btn" onclick="openPaymentModal('customer')">Purchase Now</button>
+
+    <div class="methods">
+      <p>Available Payment Methods</p>
+      <div class="tags">
+        <span>Robux</span>
+        <span>PayPal</span>
+        <span>TrueMoney</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 
@@ -977,11 +1006,6 @@ a:hover {
 </div>
 
 
-
-<!-- Footer -->
-
-
-<!-- Modal -->
 <div id="modal">
   <div id="modalContent">
     <div id="modalMessage"></div>
@@ -989,8 +1013,6 @@ a:hover {
     
   </div>
 </div>
-
-<!-- JavaScript -->
 
 <script>
   
@@ -1039,7 +1061,7 @@ function onYouTubeIframeAPIReady() {
     width: '0',
     videoId: 'ZGS8WAxwh98',
     playerVars: {
-      autoplay: 0,       // ✅ ไม่ให้เล่นอัตโนมัติ
+      autoplay: 0,     
       loop: 1,
       playlist: 'ZGS8WAxwh98',
       controls: 0,
@@ -1047,8 +1069,7 @@ function onYouTubeIframeAPIReady() {
     },
     events: {
       onReady: () => {
-        // อย่าเล่นทันที!
-        // ไม่ต้องมีอะไรตรงนี้
+        
       }
     }
   });
@@ -1098,7 +1119,7 @@ musicBtn.addEventListener("click", () => {
   if (player) {
     if (!hasStarted) {
       player.unMute();
-      player.playVideo(); // เริ่มเล่นตอนกดครั้งแรก
+      player.playVideo(); 
       hasStarted = true;
       isMuted = false;
     } else {
@@ -1106,14 +1127,14 @@ musicBtn.addEventListener("click", () => {
         player.unMute();
         player.playVideo();
       } else {
-        player.pauseVideo(); // หยุดเพลง
+        player.pauseVideo(); 
       }
       isMuted = !isMuted;
     }
     updateMusicIcon();
   }
 });
-  // ปรับ icon ตอนโหลด
+
   updateMusicIcon();
 </script>
 
@@ -1134,7 +1155,6 @@ musicBtn.addEventListener("click", () => {
     document.getElementById('paymentModal').style.display = 'none';
   }
 
-  // กดที่ปุ่มจ่าย = ไปยัง URL
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.payment-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1145,7 +1165,7 @@ musicBtn.addEventListener("click", () => {
   });
 </script>
 <script>
-  let selectedPlan = null; // 'monthly' หรือ 'lifetime'
+  let selectedPlan = null; 
   let selectedCard = null;
 
   function openPaymentModal(plan) {
@@ -1153,7 +1173,6 @@ musicBtn.addEventListener("click", () => {
     selectedCard = null;
     document.getElementById('paymentModal').style.display = 'flex';
 
-    // เอา selected ออกจากทุกการ์ด
     document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
   }
 
@@ -1161,7 +1180,6 @@ musicBtn.addEventListener("click", () => {
     document.getElementById('paymentModal').style.display = 'none';
   }
 
-  // เวลาเลือกการ์ด
   document.querySelectorAll('.payment-card').forEach(card => {
     card.addEventListener('click', () => {
       document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
@@ -1170,7 +1188,6 @@ musicBtn.addEventListener("click", () => {
     });
   });
 
-  // เวลา Click ปุ่ม Proceed
   document.querySelector('.proceed-btn').addEventListener('click', () => {
     if (!selectedCard) {
       alert('Please select a payment method first!');
@@ -1178,27 +1195,28 @@ musicBtn.addEventListener("click", () => {
     }
 
     const isRobux = selectedCard.querySelector('strong')?.textContent?.includes('Robux');
- if (isRobux) {
-const robuxUrl = selectedCard.getAttribute(
-  selectedPlan === 'monthly' ? 'data-robux-monthly' : 'data-robux-lifetime'
-);
+    let robuxUrl = null;
 
-  if (robuxUrl) {
-    window.open(robuxUrl, '_blank');
-  } else {
-    alert('No Robux URL found for this plan.');
-  }
-  return;
-}
+    if (selectedPlan === 'monthly') {
+      robuxUrl = selectedCard.getAttribute('data-robux-monthly');
+    } else if (selectedPlan === 'lifetime') {
+      robuxUrl = selectedCard.getAttribute('data-robux-lifetime');
+    } else if (selectedPlan === 'customer') {
+      robuxUrl = selectedCard.getAttribute('data-robux-customer');
+    }
 
-    // สำหรับ PayPal / TrueMoney
-    const url = selectedCard.getAttribute('data-url');
-    if (url) {
-      window.open(url, '_blank');
+    if (isRobux && robuxUrl) {
+      window.open(robuxUrl, '_blank');
     } else {
-      alert('No payment URL found for this method.');
+      const url = selectedCard.getAttribute('data-url');
+      if (url) {
+        window.open(url, '_blank');
+      } else {
+        alert('No valid payment URL found.');
+      }
     }
   });
+
 </script>
 
  <footer>
