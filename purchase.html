@@ -187,8 +187,8 @@
 background: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(20px);
 
-  -webkit-backdrop-filter: blur(12px);      /* รองรับ Safari */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);    /* เงาให้ดูลอย */
+  -webkit-backdrop-filter: blur(12px);     
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);   
   padding: 12px 40px;
   display: flex;
   justify-content: space-between;
@@ -238,13 +238,13 @@ backdrop-filter: blur(20px);
   background: transparent;
   color: white;
   border: 1px solid #555;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none;
 }
 
 .btn-buy {
   background: white;
   color: black;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none; 
 }
 .navbar-left {
   display: flex;
@@ -252,7 +252,7 @@ backdrop-filter: blur(20px);
 }
 
 .brand-title {
-  font-size: 1.6rem;        /* ขนาดใหญ่ขึ้น */
+  font-size: 1.6rem;        
   font-weight: 800;
   color: white;
   letter-spacing: 0.5px;
@@ -834,6 +834,15 @@ a:hover {
       <p>Select how you would like to pay for your plan.</p>
     </div>
 
+<div class="payment-card" id="boostCard" data-url="https://discord.gg/xecrethub">
+  <i class="fab fa-discord"></i>
+  <div>
+    <strong>Boost Server</strong>
+    <p>3 For Monthly / 6 For Lifetime</p>
+  </div>
+</div>
+
+
  <div class="payment-card" data-url="https://xecrethubth.betashift.xyz/">
   <i class="fas fa-credit-card"></i>
   <div>
@@ -912,7 +921,7 @@ a:hover {
 
 
 <div class="pricing-container">
-  <!-- Monthly Plan -->
+  
   <div class="pricing-card">
     <span class="badge">CHEAP VALUE</span>
     <h2>Monthly Access</h2>
@@ -929,15 +938,15 @@ a:hover {
     <div class="methods">
       <p>Available Payment Methods</p>
       <div class="tags">
-        <span>Robux</span>
-        <span>PayPal</span>
-        <span>TrueMoney</span>
+      <span>TrueMoney</span>
+       <span>PayPal</span>
+       <span>Robux</span>
+       <span>Boost Server</span>
       </div>
     </div>
     
   </div>
 
-  <!-- Lifetime Plan -->
   <div class="pricing-card best-value">
     <span class="badge">BEST VALUE</span>
     <h2>Lifetime Access</h2>
@@ -953,9 +962,10 @@ a:hover {
     <div class="methods">
       <p>Available Payment Methods</p>
       <div class="tags">
-        <span>Robux</span>
-        <span>PayPal</span>
         <span>TrueMoney</span>
+       <span>PayPal</span>
+       <span>Robux</span>
+       <span>Boost Server</span>
       </div>
     </div>
   </div>
@@ -974,9 +984,9 @@ a:hover {
     <div class="methods">
       <p>Available Payment Methods</p>
       <div class="tags">
-        <span>Robux</span>
-        <span>PayPal</span>
-        <span>TrueMoney</span>
+       <span>TrueMoney</span>
+       <span>PayPal</span>
+       <span>Robux</span>
       </div>
     </div>
   </div>
@@ -1165,58 +1175,62 @@ musicBtn.addEventListener("click", () => {
   });
 </script>
 <script>
-  let selectedPlan = null; 
-  let selectedCard = null;
+let selectedPlan = null;
+let selectedCard = null;
 
-  function openPaymentModal(plan) {
-    selectedPlan = plan;
-    selectedCard = null;
-    document.getElementById('paymentModal').style.display = 'flex';
+function openPaymentModal(plan) {
+  selectedPlan = plan;
+  selectedCard = null;
+  document.getElementById('paymentModal').style.display = 'flex';
 
+  document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
+
+  const boostCard = document.getElementById('boostCard');
+  if (boostCard) {
+    boostCard.style.display = (plan === 'customer') ? 'none' : 'flex';
+  }
+}
+
+function closeModal() {
+  document.getElementById('paymentModal').style.display = 'none';
+}
+
+document.querySelectorAll('.payment-card').forEach(card => {
+  card.addEventListener('click', () => {
     document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
-  }
-
-  function closeModal() {
-    document.getElementById('paymentModal').style.display = 'none';
-  }
-
-  document.querySelectorAll('.payment-card').forEach(card => {
-    card.addEventListener('click', () => {
-      document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
-      card.classList.add('selected');
-      selectedCard = card;
-    });
+    card.classList.add('selected');
+    selectedCard = card;
   });
+});
 
-  document.querySelector('.proceed-btn').addEventListener('click', () => {
-    if (!selectedCard) {
-      alert('Please select a payment method first!');
-      return;
-    }
+document.querySelector('.proceed-btn').addEventListener('click', () => {
+  if (!selectedCard) {
+    alert('Please select a payment method first!');
+    return;
+  }
 
-    const isRobux = selectedCard.querySelector('strong')?.textContent?.includes('Robux');
-    let robuxUrl = null;
+  const isRobux = selectedCard.querySelector('strong')?.textContent?.includes('Robux');
+  let robuxUrl = null;
 
-    if (selectedPlan === 'monthly') {
-      robuxUrl = selectedCard.getAttribute('data-robux-monthly');
-    } else if (selectedPlan === 'lifetime') {
-      robuxUrl = selectedCard.getAttribute('data-robux-lifetime');
-    } else if (selectedPlan === 'customer') {
-      robuxUrl = selectedCard.getAttribute('data-robux-customer');
-    }
+  if (selectedPlan === 'monthly') {
+    robuxUrl = selectedCard.getAttribute('data-robux-monthly');
+  } else if (selectedPlan === 'lifetime') {
+    robuxUrl = selectedCard.getAttribute('data-robux-lifetime');
+  } else if (selectedPlan === 'customer') {
+    robuxUrl = selectedCard.getAttribute('data-robux-customer');
+  }
 
-    if (isRobux && robuxUrl) {
-      window.open(robuxUrl, '_blank');
+  if (isRobux && robuxUrl) {
+    window.open(robuxUrl, '_blank');
+  } else {
+    const url = selectedCard.getAttribute('data-url');
+    if (url) {
+      window.open(url, '_blank');
     } else {
-      const url = selectedCard.getAttribute('data-url');
-      if (url) {
-        window.open(url, '_blank');
-      } else {
-        alert('No valid payment URL found.');
-      }
+      alert('No valid payment URL found.');
     }
-  });
-
+  }
+});
 </script>
 
  <footer>
