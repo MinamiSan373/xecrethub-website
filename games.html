@@ -187,8 +187,8 @@
 background: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(20px);
 
-  -webkit-backdrop-filter: blur(12px);      /* รองรับ Safari */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);    /* เงาให้ดูลอย */
+  -webkit-backdrop-filter: blur(12px);      
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);   
   padding: 12px 40px;
   display: flex;
   justify-content: space-between;
@@ -238,13 +238,13 @@ backdrop-filter: blur(20px);
   background: transparent;
   color: white;
   border: 1px solid #555;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none; 
 }
 
 .btn-buy {
   background: white;
   color: black;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none; 
 }
 .navbar-left {
   display: flex;
@@ -252,7 +252,7 @@ backdrop-filter: blur(20px);
 }
 
 .brand-title {
-  font-size: 1.6rem;        /* ขนาดใหญ่ขึ้น */
+  font-size: 1.6rem;       
   font-weight: 800;
   color: white;
   letter-spacing: 0.5px;
@@ -712,7 +712,7 @@ a:hover {
   border-radius: 50%;
   width: 26px;
   height: 26px;
-  line-height: 26px;  /* ทำให้เลขอยู่ตรงกลางพอดี */
+  line-height: 26px;  
   text-align: center;
   font-size: 0.85rem;
   flex-shrink: 0;
@@ -734,7 +734,7 @@ a:hover {
 .icon-button:hover {
   background-color: rgba(255,255,255,0.1);
 }
-/* แสดง hamburger เมื่อหน้าจอเล็ก */
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -749,7 +749,6 @@ a:hover {
   border-radius: 2px;
 }
 
-/* ซ่อนเมนูปกติในมือถือ */
 @media (max-width: 768px) {
   .navbar-center {
     display: none;
@@ -838,7 +837,7 @@ a:hover {
   background: #333;
 }
 .payment-modal-content {
-  position: relative; /* 👈 สำคัญ */
+  position: relative; 
   background: #111;
   border-radius: 12px;
   padding: 30px 25px;
@@ -1022,7 +1021,6 @@ a:hover {
   </div>
 </nav>
 
-<!--------------------Game-------------------->
 <div class="highlight-box">
   <h1>Supported Games</h1>
   <p id="gameCount">Currently supporting 0 games</p>
@@ -1199,9 +1197,6 @@ a:hover {
 
 </ul>
 
-<!--------------------Game-------------------->
-
-
 
 <div id="modal">
   <div id="modalContent">
@@ -1211,7 +1206,6 @@ a:hover {
   </div>
 </div>
 
-<!-- JavaScript -->
 
 <script>
   
@@ -1260,7 +1254,7 @@ function onYouTubeIframeAPIReady() {
     width: '0',
     videoId: 'ZGS8WAxwh98',
     playerVars: {
-      autoplay: 0,       // ✅ ไม่ให้เล่นอัตโนมัติ
+      autoplay: 0,      
       loop: 1,
       playlist: 'ZGS8WAxwh98',
       controls: 0,
@@ -1268,8 +1262,7 @@ function onYouTubeIframeAPIReady() {
     },
     events: {
       onReady: () => {
-        // อย่าเล่นทันที!
-        // ไม่ต้องมีอะไรตรงนี้
+    
       }
     }
   });
@@ -1319,7 +1312,7 @@ musicBtn.addEventListener("click", () => {
   if (player) {
     if (!hasStarted) {
       player.unMute();
-      player.playVideo(); // เริ่มเล่นตอนกดครั้งแรก
+      player.playVideo(); 
       hasStarted = true;
       isMuted = false;
     } else {
@@ -1327,14 +1320,14 @@ musicBtn.addEventListener("click", () => {
         player.unMute();
         player.playVideo();
       } else {
-        player.pauseVideo(); // หยุดเพลง
+        player.pauseVideo(); 
       }
       isMuted = !isMuted;
     }
     updateMusicIcon();
   }
 });
-  // ปรับ icon ตอนโหลด
+ 
   updateMusicIcon();
 </script>
 
@@ -1355,7 +1348,6 @@ musicBtn.addEventListener("click", () => {
     document.getElementById('paymentModal').style.display = 'none';
   }
 
-  // กดที่ปุ่มจ่าย = ไปยัง URL
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.payment-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1366,7 +1358,7 @@ musicBtn.addEventListener("click", () => {
   });
 </script>
 <script>
-  let selectedPlan = null; // 'monthly' หรือ 'lifetime'
+  let selectedPlan = null;
   let selectedCard = null;
 
   function openPaymentModal(plan) {
@@ -1374,7 +1366,6 @@ musicBtn.addEventListener("click", () => {
     selectedCard = null;
     document.getElementById('paymentModal').style.display = 'flex';
 
-    // เอา selected ออกจากทุกการ์ด
     document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
   }
 
@@ -1382,7 +1373,6 @@ musicBtn.addEventListener("click", () => {
     document.getElementById('paymentModal').style.display = 'none';
   }
 
-  // เวลาเลือกการ์ด
   document.querySelectorAll('.payment-card').forEach(card => {
     card.addEventListener('click', () => {
       document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
@@ -1391,7 +1381,6 @@ musicBtn.addEventListener("click", () => {
     });
   });
 
-  // เวลา Click ปุ่ม Proceed
   document.querySelector('.proceed-btn').addEventListener('click', () => {
     if (!selectedCard) {
       alert('Please select a payment method first!');
@@ -1412,7 +1401,6 @@ const robuxUrl = selectedCard.getAttribute(
   return;
 }
 
-    // สำหรับ PayPal / TrueMoney
     const url = selectedCard.getAttribute('data-url');
     if (url) {
       window.open(url, '_blank');
