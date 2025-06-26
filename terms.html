@@ -261,8 +261,8 @@
 background: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(20px);
 
-  -webkit-backdrop-filter: blur(12px);      /* รองรับ Safari */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);    /* เงาให้ดูลอย */
+  -webkit-backdrop-filter: blur(12px);      
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);    
   padding: 12px 40px;
   display: flex;
   justify-content: space-between;
@@ -312,13 +312,13 @@ backdrop-filter: blur(20px);
   background: transparent;
   color: white;
   border: 1px solid #555;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none;
 }
 
 .btn-buy {
   background: white;
   color: black;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none; 
 }
 .navbar-left {
   display: flex;
@@ -326,7 +326,7 @@ backdrop-filter: blur(20px);
 }
 
 .brand-title {
-  font-size: 1.6rem;        /* ขนาดใหญ่ขึ้น */
+  font-size: 1.6rem;        
   font-weight: 800;
   color: white;
   letter-spacing: 0.5px;
@@ -730,7 +730,7 @@ a:hover {
   border-radius: 50%;
   width: 26px;
   height: 26px;
-  line-height: 26px;  /* ทำให้เลขอยู่ตรงกลางพอดี */
+  line-height: 26px;  
   text-align: center;
   font-size: 0.85rem;
   flex-shrink: 0;
@@ -752,7 +752,7 @@ a:hover {
 .icon-button:hover {
   background-color: rgba(255,255,255,0.1);
 }
-/* แสดง hamburger เมื่อหน้าจอเล็ก */
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -767,7 +767,6 @@ a:hover {
   border-radius: 2px;
 }
 
-/* ซ่อนเมนูปกติในมือถือ */
 @media (max-width: 768px) {
   .navbar-center {
     display: none;
@@ -856,7 +855,7 @@ a:hover {
   background: #333;
 }
 .payment-modal-content {
-  position: relative; /* 👈 สำคัญ */
+  position: relative; 
   background: #111;
   border-radius: 12px;
   padding: 30px 25px;
@@ -994,11 +993,10 @@ a:hover {
   </div>
 </nav>
 
-<!--------------------Terms-------------------->
  <h1>Terms of Service</h1>
   <p class="subtitle">Please read these Terms carefully before using the Xecret Hub Services. By using our Services, you agree to be bound by these Terms.</p>
 <div class="section">
-  <h2><i class="fas fa-shield"></i> Usage Policy</h2>
+  <h2><i class="fas fa-user-shield"></i> Usage Policy</h2>
 
   <div class="item">
     <div class="item-title accordion-header">No Refunds</div>
@@ -1042,12 +1040,145 @@ a:hover {
   </div>
 </div>
 
+
+
 </div>
+<div class="section">
+  <h2><i class="fas fa-wallet"></i> Payment Terms</h2>
+
+  <div class="item">
+    <div class="item-title accordion-header">License Validity</div>
+    <div class="accordion-content">
+      <p>All purchases grant the user access only to the plan selected during payment. Changing or upgrading plans later requires a new transaction unless otherwise specified in promotions.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Robux Policy</div>
+    <div class="accordion-content">
+      <p>Robux payments must be made via official links provided by Xecret Hub. We are not responsible for payments sent to unauthorized sources. No reselling or transferring of Robux-purchased access is allowed.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Chargebacks</div>
+    <div class="accordion-content">
+      <p>Attempting to reverse a payment (chargeback) will result in a permanent ban from our services and blacklisting from any future purchases or support.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Currency & Conversion Fees</div>
+    <div class="accordion-content">
+      <p>All payments are processed in USD. Any fees or conversion costs from other currencies are the buyer's responsibility.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">No Installment Plans</div>
+    <div class="accordion-content">
+      <p>We do not offer installment-based payments or delayed access. All access is granted only after full payment is confirmed.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Coupon Abuse</div>
+    <div class="accordion-content">
+      <p>Discount codes or promotional offers must be used as intended. Exploiting bugs or misusing coupons may result in revoked access without refund.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2><i class="fas fa-users"></i> Community Guidelines</h2>
+
+  <div class="item">
+    <div class="item-title accordion-header">Respectful Behavior</div>
+    <div class="accordion-content">
+      <p>Respect staff and other users at all times. Discrimination, hate speech, harassment, or bullying in any form will result in disciplinary action, including permanent bans.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Support Etiquette</div>
+    <div class="accordion-content">
+      <p>Use support channels responsibly. Spamming, excessive pinging, or submitting false/duplicate tickets will result in a timeout or removal of support privileges.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">No Advertising</div>
+    <div class="accordion-content">
+      <p>Advertising other scripts, services, or Discord servers is not allowed without permission. This includes both public and private channels.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">English or Thai Only</div>
+    <div class="accordion-content">
+      <p>Please use English or Thai in support and public channels to ensure clear communication for all staff and members.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">User Impersonation</div>
+    <div class="accordion-content">
+      <p>Do not impersonate Xecret Hub staff, developers, or partners. Violators will be immediately removed from the community.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Channel Guidelines</div>
+    <div class="accordion-content">
+      <p>Each channel has a specific purpose. Posting unrelated content or disrupting discussions will result in warnings or mute penalties.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2><i class="fas fa-balance-scale"></i> Legal Compliance</h2>
+
+  <div class="item">
+    <div class="item-title accordion-header">Game Terms</div>
+    <div class="accordion-content">
+      <p>You are solely responsible for ensuring that your use of Xecret Hub does not violate the terms and conditions of the games you engage with. We do not encourage or condone breaches of any game’s policies.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Ban Disclaimer</div>
+    <div class="accordion-content">
+      <p>We are not liable for any game bans, suspensions, or penalties that may occur as a result of using our services. Use at your own risk.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Intellectual Property</div>
+    <div class="accordion-content">
+      <p>All third-party trademarks (e.g. game names, logos) are the property of their respective owners. Xecret Hub is not affiliated with or endorsed by any game developer or publisher.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Prohibited Use Cases</div>
+    <div class="accordion-content">
+      <p>You may not use Xecret Hub for malicious activities such as cheating in competitive environments with real-money rewards, harming other players, or violating national/commercial laws.</p>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="item-title accordion-header">Jurisdiction Notice</div>
+    <div class="accordion-content">
+      <p>These terms are governed under international digital goods and services standards. Your location may have additional restrictions — you are responsible for compliance.</p>
+    </div>
+  </div>
+</div>
+
 
  <div class="acceptance">
     <h2><i class="fas fa-key"style="color:rgb(255, 255, 255)"></i> Security Notice Key</h2>
     <p>Please avoid sharing your key with anyone, as it could lead to potential security risks.</p>
-    <p style="margin-top:10px; color: #05ff05;">Last updated: June 23, 2025</p>
+    <p style="margin-top:10px; color: #05ff05;">Last updated: June 26, 2025</p>
   </div>
 
 
@@ -1055,12 +1186,8 @@ a:hover {
   <div class="acceptance">
     <h2><i class="fas fa-check-circle"style="color:rgb(255, 255, 255)"></i> Acceptance of Terms</h2>
     <p>Your use of Xecret Hub indicates that you have read and accepted these Terms of Service. If you do not agree, please do not continue to use the service.</p>
-    <p style="margin-top:10px; color: #05ff05;">Last updated: June 22, 2025</p>
+    <p style="margin-top:10px; color: #05ff05;">Last updated: June 26, 2025</p>
   </div>
-
-<!--------------------Terms-------------------->
-
-
 
 <div id="modal">
   <div id="modalContent">
@@ -1070,7 +1197,6 @@ a:hover {
   </div>
 </div>
 
-<!-- JavaScript -->
 
 <script>
   
@@ -1119,7 +1245,7 @@ function onYouTubeIframeAPIReady() {
     width: '0',
     videoId: 'ZGS8WAxwh98',
     playerVars: {
-      autoplay: 0,       // ✅ ไม่ให้เล่นอัตโนมัติ
+      autoplay: 0,    
       loop: 1,
       playlist: 'ZGS8WAxwh98',
       controls: 0,
@@ -1127,8 +1253,6 @@ function onYouTubeIframeAPIReady() {
     },
     events: {
       onReady: () => {
-        // อย่าเล่นทันที!
-        // ไม่ต้องมีอะไรตรงนี้
       }
     }
   });
@@ -1178,7 +1302,7 @@ musicBtn.addEventListener("click", () => {
   if (player) {
     if (!hasStarted) {
       player.unMute();
-      player.playVideo(); // เริ่มเล่นตอนกดครั้งแรก
+      player.playVideo(); 
       hasStarted = true;
       isMuted = false;
     } else {
@@ -1186,14 +1310,14 @@ musicBtn.addEventListener("click", () => {
         player.unMute();
         player.playVideo();
       } else {
-        player.pauseVideo(); // หยุดเพลง
+        player.pauseVideo(); 
       }
       isMuted = !isMuted;
     }
     updateMusicIcon();
   }
 });
-  // ปรับ icon ตอนโหลด
+
   updateMusicIcon();
 </script>
 
@@ -1214,7 +1338,6 @@ musicBtn.addEventListener("click", () => {
     document.getElementById('paymentModal').style.display = 'none';
   }
 
-  // กดที่ปุ่มจ่าย = ไปยัง URL
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.payment-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -1281,7 +1404,6 @@ document.querySelectorAll('.accordion-header').forEach(header => {
   header.addEventListener('click', () => {
     const content = header.nextElementSibling;
 
-    // Toggle แสดง/ซ่อน
     if (content.style.display === 'block') {
       content.style.display = 'none';
     } else {
