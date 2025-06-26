@@ -91,11 +91,11 @@
       user-select: none;
     }
     .rounded-image {
-  width: 180px;           /* หรือขนาดที่ต้องการ */
+  width: 180px;          
   height: 180px;
-  border-radius: 50%;     /* ✅ ทำให้กลม */
-  object-fit: cover;      /* ✅ ตัดขอบให้พอดีไม่บิด */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3); /* เพิ่มเงานิด ๆ ให้ดูมีมิติ */
+  border-radius: 50%;    
+  object-fit: cover;     
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
     .purchase-btn:hover, .purchase-now-btn:hover {
@@ -160,8 +160,8 @@
 background: rgba(0, 0, 0, 0.3);
 backdrop-filter: blur(20px);
 
-  -webkit-backdrop-filter: blur(12px);      /* รองรับ Safari */
-  box-shadow: 0 4px 20px rgba(0,0,0,0.4);    /* เงาให้ดูลอย */
+  -webkit-backdrop-filter: blur(12px);     
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);    
   padding: 12px 40px;
   display: flex;
   justify-content: space-between;
@@ -211,13 +211,13 @@ backdrop-filter: blur(20px);
   background: transparent;
   color: white;
   border: 1px solid #555;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none;
 }
 
 .btn-buy {
   background: white;
   color: black;
-  text-decoration: none; /* ลบเส้นใต้ */
+  text-decoration: none; 
 }
 .navbar-left {
   display: flex;
@@ -225,7 +225,7 @@ backdrop-filter: blur(20px);
 }
 
 .brand-title {
-  font-size: 1.6rem;        /* ขนาดใหญ่ขึ้น */
+  font-size: 1.6rem;       
   font-weight: 800;
   color: white;
   letter-spacing: 0.5px;
@@ -287,10 +287,10 @@ backdrop-filter: blur(20px);
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding-top: 120px;   /* ✅ อยู่ห่างบนเล็กน้อย */
+  padding-top: 120px;   
   padding-bottom: 40px;
-  min-height: unset;    /* ❌ ไม่ต้องครอบทั้งจอแล้ว */
-  justify-content: unset; /* ❌ ยกเลิกการจัดกลางแนวตั้ง */
+  min-height: unset;    
+  justify-content: unset; 
 }
 
 .hero-container h1 {
@@ -492,7 +492,7 @@ backdrop-filter: blur(20px);
   transition: background 0.3s, border 0.3s;
 }
 .hero-section {
-  padding-bottom: 40px; /* ลดจากเดิม เช่น 100px */
+  padding-bottom: 40px;
 }
 .review-grid {
   display: flex;
@@ -502,7 +502,7 @@ backdrop-filter: blur(20px);
 }
 
 .review-box {
-  width: 300px; /* ให้ขนาดไม่ใหญ่เกินไป */
+  width: 300px; 
   position: relative;
   padding: 40px 30px 30px;
   border-radius: 20px;
@@ -517,7 +517,7 @@ backdrop-filter: blur(20px);
 }
 
 .why-section {
-  margin-top: -40px; /* ✅ ดึงขึ้นมาใกล้ hero */
+  margin-top: -40px; 
 }
 
 .payment-card:hover {
@@ -821,7 +821,7 @@ a:hover {
   border-radius: 50%;
   width: 26px;
   height: 26px;
-  line-height: 26px;  /* ทำให้เลขอยู่ตรงกลางพอดี */
+  line-height: 26px; 
   text-align: center;
   font-size: 0.85rem;
   flex-shrink: 0;
@@ -843,7 +843,7 @@ a:hover {
 .icon-button:hover {
   background-color: rgba(255,255,255,0.1);
 }
-/* แสดง hamburger เมื่อหน้าจอเล็ก */
+
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -858,7 +858,6 @@ a:hover {
   border-radius: 2px;
 }
 
-/* ซ่อนเมนูปกติในมือถือ */
 @media (max-width: 768px) {
   .navbar-center {
     display: none;
@@ -947,7 +946,7 @@ a:hover {
   background: #333;
 }
 .payment-modal-content {
-  position: relative; /* 👈 สำคัญ */
+  position: relative;
   background: #111;
   border-radius: 12px;
   padding: 30px 25px;
@@ -1171,8 +1170,7 @@ a:hover {
   </div>
 </nav>
 
-<!--------------------Home-------------------->
-<!-- Hero Section -->
+
 <div class="hero-container">
   <h1>Xecret Hub</h1>
   <p>20+ Games • Daily Updates • High-Quality Scripts • Built for Performance</p>
@@ -1182,7 +1180,6 @@ a:hover {
   </div>
 </div>
 
-<!-- Features Section -->
 <section class="features-section">
   <h2>What's good about Xecret Hub?</h2>
   <div class="features-grid">
@@ -1237,13 +1234,6 @@ a:hover {
 
 </section>
 
-
-
-
-<!--------------------Home-------------------->
-
-
-
 <div id="modal">
   <div id="modalContent">
     <div id="modalMessage"></div>
@@ -1251,8 +1241,6 @@ a:hover {
     
   </div>
 </div>
-
-<!-- JavaScript -->
 
 <script>
   
@@ -1301,7 +1289,7 @@ function onYouTubeIframeAPIReady() {
     width: '0',
     videoId: 'ZGS8WAxwh98',
     playerVars: {
-      autoplay: 0,       // ✅ ไม่ให้เล่นอัตโนมัติ
+      autoplay: 0,    
       loop: 1,
       playlist: 'ZGS8WAxwh98',
       controls: 0,
@@ -1309,8 +1297,6 @@ function onYouTubeIframeAPIReady() {
     },
     events: {
       onReady: () => {
-        // อย่าเล่นทันที!
-        // ไม่ต้องมีอะไรตรงนี้
       }
     }
   });
@@ -1429,7 +1415,6 @@ musicBtn.addEventListener("click", () => {
     });
   });
 
-  // เวลา Click ปุ่ม Proceed
   document.querySelector('.proceed-btn').addEventListener('click', () => {
     if (!selectedCard) {
       alert('Please select a payment method first!');
@@ -1525,7 +1510,6 @@ const reviewData = [
 const reviewContainer = document.getElementById("reviewContainer");
 let currentTagIndex = 0;
 
-// หา tag ทั้งหมดแบบ unique
 const tags = [...new Set(reviewData.map(r => r.tag))];
 
 function renderTagGroup(tag) {
@@ -1555,7 +1539,6 @@ function renderTagGroup(tag) {
   }, 600);
 }
 
-// เริ่มต้น
 renderTagGroup(tags[currentTagIndex]);
 
 setInterval(() => {
